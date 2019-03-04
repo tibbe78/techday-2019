@@ -1,0 +1,11 @@
+---
+
+- hosts: ubuntu
+  become: True
+  gather_facts: True
+
+  tasks:
+  - name: User configuration
+    include_tasks: tasks/users.yml
+    tags: users
+

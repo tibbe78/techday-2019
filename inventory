@@ -7,9 +7,15 @@
 #   - A hostname/ip can be a member of multiple groups
 
 # A collection of Ubuntu Servers
-[ubuntu_server]
+[ubuntu_servers]
 server1.mylocal
 server2.mylocal
+
+[ubuntu_servers:vars]
+ansible_user=cygate  # ssh login user
+ansible_become=yes  # use sudo
+ansible_become_method=sudo
+ansible_become_pass='{{ ubuntu_servers_sudo_pass }}'
 
 #Checkpoint MGT
 [checkpoint]
@@ -18,7 +24,7 @@ server2.mylocal
 [f5]
 
 [linux:children]
-ubuntu_server
+ubuntu_servers
 
 [local]
 localhost   ansible_connection=local

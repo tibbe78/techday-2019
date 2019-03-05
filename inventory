@@ -12,9 +12,6 @@ server1.mylocal
 server2.mylocal
 
 [ubuntu_servers:vars]
-ansible_user=cygate  # ssh login user
-ansible_become=yes  # use sudo
-ansible_become_method=sudo
 ansible_become_pass='{{ ubuntu_servers_sudo_pass }}'
 
 #Checkpoint MGT

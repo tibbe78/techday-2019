@@ -6,7 +6,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### Install Ansible
 
 #### Add Ansibles official repository via PPA (Personal Package Archives).
-```Shell
+```console
 sudo apt-add-repository ppa:ansible/ansible
 ```
 

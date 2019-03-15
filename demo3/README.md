@@ -12,7 +12,7 @@ server1.mylocal
 server1.mylocal
 ```
 
-#### write a simple playbook in YAML to update servers with apt module
+#### write a simple playbook in YAML to update and upgrade servers with apt module
 ```YAML
 ---
 - hosts: ubuntu
@@ -40,3 +40,6 @@ ansible-playbook -i inventory --ask-become-pass playbook.yml
 ssh server1.mylocal
 sudo apt upgrade
 ```
+
+### [Demo 4 :lock:](../demo4/)
+Next Demo 4 (Secure our sudo password with Ansible Vault)

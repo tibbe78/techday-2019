@@ -8,5 +8,5 @@
 
 # A collection of internal Servers
 [servers]
-server1.mylocal
-server2.mylocal
+server1
+server2

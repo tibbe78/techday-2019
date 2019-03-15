@@ -8,5 +8,9 @@
 
 # A collection of internal Servers
 [ubuntu]
-server1.mylocal
-server2.mylocal
+server1
+server2
+
+#encrypted sudo pass for all Ubuntu servers
+[ubuntu:vars]
+ansible_become_pass='{{ prod_sudo_password }}'

@@ -15,5 +15,5 @@ Demo 2 (test ping module and look at gathered facts)
 ### [Demo 3 :book:](demo3/)
 Demo 3 (building our first playbook instead of console commands)
 
-### [Demo 4 :book:](demo3/)
+### [Demo 4 :lock:](demo4/)
 Demo 4 (Secure our sudo password with Ansible Vault)

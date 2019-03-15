@@ -24,3 +24,5 @@ sudo apt install ansible
 ```C
 ansible --version
 ```
+
+### Next demo 2 will show how to run some commands directly from command prompt.

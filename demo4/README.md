@@ -10,7 +10,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 #### *using the same simple playbook file with update apt from demo 3*
 
 #### Create your secure vault-passwords in your home-folder or somewhere safe.
-*These Vault-Passwords should also be secured with a PAM system such as CyberArk*
+*These Vault-Passwords should be secured with a PAM system such as CyberArk*
 ```sh
 tr -cd '[:alnum:]' < /dev/urandom | fold -w32 | head -n1 > ~/.vault-pass.common
 tr -cd '[:alnum:]' < /dev/urandom | fold -w32 | head -n1 > ~/.vault-pass.production
@@ -27,8 +27,12 @@ sudo nano /etc/ansible/ansible.cfg
 [defaults]
 vault_identity_list = common@~/.vault-pass.common, staging@~/.vault-pass.staging, production@~/.vault-pass.production
 ```
+
 #### Create a file to store your secure variables, passwords, etc in.
-vault_prod.yml
+```sh
+nano vault_prod.yml
+```
+##### Add your secret variables or passwords
 ```YAML
 ---
 prod_sudo_password:  cygate

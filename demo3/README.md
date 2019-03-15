@@ -3,18 +3,26 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ## Ansible Demo 3 :book:
 
-### Run first simple module ping directly from command prompt without any playbook.
+### Building our first playbook instead of console commands and run this playbook
 
-#### Create a simple inventory file with two hosts.
+#### use a simple inventory file with two hosts.
 ```C
-[servers]
+[ubuntu]
 server1.mylocal
 server1.mylocal
 ```
 
-#### run the test module ping against all hosts in this inventory.
+#### write a simple playbook in YAML to update servers with apt module
 ```C
-ansible -i inventory -m ping all
+---
+- hosts: ubuntu*
+  become: True
+  gather_facts: True
+
+  tasks:
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist
 ```
 
 #### run the test module ping against only Servers group in this inventory.

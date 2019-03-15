@@ -1,0 +1,9 @@
+---
+- hosts: ubuntu*
+  become: True
+  gather_facts: True
+
+  tasks:
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist

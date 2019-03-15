@@ -30,7 +30,7 @@ vault_identity_list = common@~/.vault-pass.common
 ```sh
 nano vault_common.yml
 ```
-##### Add your secret variables or passwords
+> Add your secret variables or passwords
 ```YAML
 ---
 sudo_password:  cygate
@@ -40,12 +40,6 @@ other_secure_varible: SuperSecretVarible
 #### Encrypt your vault_common.yml file so it's secure with the common vault password
 ```sh
 ansible-vault encrypt --encrypt-vault-id common vault_common.yml
-```
-
-#### look at the now encrypted vault file.
-> You can also edit the encrypted file with 'ansible-vault edit'
-```sh
-cat vault_common.yml
 ```
 
 #### Add the vault file and the vault varible for the sudo in the playbook.

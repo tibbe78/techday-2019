@@ -6,32 +6,32 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### Install Ansible
 
 #### Add Ansibles official repository via PPA (Personal Package Archives).
-```sh
+```shell
 sudo apt-add-repository ppa:ansible/ansible
 ```
 
 #### update apt to get the latest package info.
-```sh
+```shell
 sudo apt update
 ```
 
 #### run apt to install Ansible.
-```sh
+```shell
 sudo apt install ansible
 ```
 
 #### Check that Ansible was installed with the latest version.
-```sh
+```shell
 ansible --version
 ```
 #### Generate ssh-keys on Ansible master (already exists in demo)
-```sh
+```shell
 ssh-keygen
 ```
 
 #### Install SSH keys on server 1 (already exists in demo)
 ##### *We want to logon without password over SSH, use CyberArk(PAM) to keep secure*
-```sh
+```shell
 ssh-copy-id server1.mylocal
 ```
 

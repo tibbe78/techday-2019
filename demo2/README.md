@@ -1,5 +1,5 @@
 # Cygate Techdays 2019
-Automation demo for Cygate Techdays 2019 by Christofer Tibbelin
+Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ## Ansible Demo 2
 

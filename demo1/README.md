@@ -11,27 +11,27 @@ sudo apt-add-repository ppa:ansible/ansible
 ```
 
 #### update apt to get the latest package info.
-```shell
+```console
 sudo apt update
 ```
 
 #### run apt to install Ansible.
-```shell
+```console
 sudo apt install ansible
 ```
 
 #### Check that Ansible was installed with the latest version.
-```shell
+```console
 ansible --version
 ```
 #### Generate ssh-keys on Ansible master (already exists in demo)
-```shell
+```console
 ssh-keygen
 ```
 
 #### Install SSH keys on server 1 (already exists in demo)
 ##### *We want to logon without password over SSH, use CyberArk(PAM) to keep secure*
-```shell
+```console
 ssh-copy-id server1.mylocal
 ```
 

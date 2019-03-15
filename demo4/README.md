@@ -5,9 +5,8 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ### Secure our sudo password from demo 3 and automate this
 
-#### - [x] *using the same simple inventory file with two hosts from demo 3*
-
-#### - [x] *using the same simple playbook file with update apt from demo 3*
+- [x] *using the same simple inventory file with two hosts from demo 3*
+- [x] *using the same simple playbook file with update apt from demo 3*
 
 #### Create your secure vault-passwords in your home-folder or somewhere safe.
 *These Vault-Passwords should be secured with a PAM system such as CyberArk*

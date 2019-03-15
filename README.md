@@ -1,9 +1,9 @@
 # Cygate Techdays 2019
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
-## Ansible Demo :dog:
+## Ansible Demo :computer::penguin:
 
-### [Presentation :scream:](presentation/)
+### [Presentation :chart_with_downwards_trend:](presentation/)
 Addon files for presentation
 
 ### [Demo 1 :dvd:](demo1/)

@@ -24,5 +24,15 @@ sudo apt install ansible
 ```C
 ansible --version
 ```
+#### Generate ssh-keys on Ansible master (already exists in demo)
+```C
+ssh-keygen
+```
+
+#### Install SSH keys on server 1 (already exists in demo)
+##### *We want to logon without username or password over SSH user CyberArk to keep secret*
+```C
+ssh-copy-id server1.mylocal
+```
 
 ### Next demo 2 will show how to run some commands directly from command prompt.

@@ -6,14 +6,14 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### Building our first playbook instead of console commands and run this playbook
 
 #### use a simple inventory file with two hosts.
-```C
+```INI
 [ubuntu]
 server1.mylocal
 server1.mylocal
 ```
 
 #### write a simple playbook in YAML to update servers with apt module
-```C
+```YAML
 ---
 - hosts: ubuntu
   become: true #run as sudo
@@ -31,12 +31,12 @@ server1.mylocal
 ```
 
 #### run the playbook to update servers as root via sudo
-```C
+```sh
 ansible-playbook -i inventory --ask-become-pass playbook.yml
 ```
 
 #### login to server1 to verify that it's upgraded
-```C
+```sh
 ssh server1.mylocal
 sudo apt upgrade
 ```

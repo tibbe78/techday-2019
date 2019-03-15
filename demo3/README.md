@@ -1,7 +1,7 @@
 # Cygate Techdays 2019
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
-## Ansible Demo 2 :mag:
+## Ansible Demo 3 :book:
 
 ### Run first simple module ping directly from command prompt without any playbook.
 

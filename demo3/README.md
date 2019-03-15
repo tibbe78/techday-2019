@@ -15,32 +15,28 @@ server1.mylocal
 #### write a simple playbook in YAML to update servers with apt module
 ```C
 ---
-- hosts: ubuntu*
-  become: True
-  gather_facts: True
+- hosts: ubuntu
+  become: true
+  gather_facts: true
 
   tasks:
+    - name: Only run update cache if the last one is more than 3600 seconds ago
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
     - name: Update all packages to the latest version
       apt:
         upgrade: dist
 ```
 
-#### run the test module ping against only Servers group in this inventory.
+#### run the playbook to update servers
 ```C
-ansible -i inventory -m ping servers
+ansible-playbook -i inventory --ask-become-pass playbook.yml
 ```
 
-#### View all information (*called 'facts'*) Ansible have gathered about these host.
+#### login to server1 to verify that it's upgraded
 ```C
-ansible -i inventory -m setup all
-```
-
-#### View only network information for hosts via subset
-```C
-ansible -i inventory -m setup -a 'gather_subset=!all,!any,network' servers
-```
-
-#### View only default network information for hosts via filter
-```C
-ansible -i inventory -m setup -a 'filter=ansible_default_ipv4' servers
+ssh server1.mylocal
+sudo apt upgrade
 ```

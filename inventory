@@ -8,13 +8,21 @@
 
 # A collection of internal Servers
 [internal_servers]
-server1.mylocal
-server2.mylocal
+server1 ansible_host=server1.mylocal
+server2 ansible_host=server1.mylocal
 
 # DMZ servers
 [DMZ_servers]
-dmz1.mylocal
-dmz2.mylocal
+dmz1
+dmz2
+
+[DC1_Servers]
+server1.mylocal
+dmz1
+
+[DC2_Servers]
+server2.mylocal
+dmz2
 
 # All Ubuntu Servers
 [ubuntu_servers:children]

@@ -36,3 +36,6 @@ ansible -i inventory -m setup -a 'gather_subset=!all,!any,network' servers
 ```C
 ansible -i inventory -m setup -a 'filter=ansible_default_ipv4' servers
 ```
+
+### [Demo 3 :book:](../demo3/)
+Next demo 3 (building our first playbook instead of console commands)

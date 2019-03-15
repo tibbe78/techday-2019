@@ -16,7 +16,7 @@ server1.mylocal
 ```C
 ---
 - hosts: ubuntu
-  become: true
+  become: true #run as sudo
   gather_facts: true
 
   tasks:
@@ -30,7 +30,7 @@ server1.mylocal
         upgrade: dist
 ```
 
-#### run the playbook to update servers
+#### run the playbook to update servers as root via sudo
 ```C
 ansible-playbook -i inventory --ask-become-pass playbook.yml
 ```

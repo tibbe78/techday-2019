@@ -35,4 +35,6 @@ ssh-keygen
 ssh-copy-id server1.mylocal
 ```
 
-### Next demo 2 will show how to run some commands directly from command prompt.
+
+### [Demo 2 :mag:](../demo2/)
+#### Next demo 2 will show how to run some commands directly from command prompt.

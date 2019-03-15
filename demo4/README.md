@@ -9,7 +9,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ##### :exclamation: *using the same simple playbook file with update apt from demo 3*
 
 #### Create your secure vault-passwords in your home-folder or somewhere safe.
- *These Vault-Passwords should be secured with a PAM system such as CyberArk*
+> These Vault-Passwords should be secured with a PAM system such as CyberArk
 ```sh
 tr -cd '[:alnum:]' < /dev/urandom | fold -w32 | head -n1 > ~/.vault-pass.common
 tr -cd '[:alnum:]' < /dev/urandom | fold -w32 | head -n1 > ~/.vault-pass.production
@@ -44,7 +44,7 @@ ansible-vault encrypt --encrypt-vault-id production vault_prod.yml
 ```
 
 #### look at the now encrypted vault file.
-   *You can also edit the encrypted file with 'ansible-vault edit'*
+> You can also edit the encrypted file with 'ansible-vault edit'
 ```sh
 cat vault_prod.yml
 ```

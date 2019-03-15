@@ -22,7 +22,7 @@ ansible -i inventory -m ping all
 ansible -i inventory -m ping servers
 ```
 
-#### View all information Ansible have gathered about these host. *Also called 'facts' in Ansible*
+#### View all information Ansible have gathered about these host. ##### *Also called 'facts' in Ansible*
 ```C
 ansible -i inventory -m setup all
 ```

@@ -45,10 +45,13 @@ ansible-vault encrypt --encrypt-vault-id common vault_common.yml
 #### Add the vault file and the vault varible for the sudo in the playbook.
 > This can also be done in the inventory
 ```YAML
+gather_facts: true
 vars_files:
   - vault_common.yml
 vars:
   ansible_become_pass: "{{ sudo_password }}"
+
+tasks:
 ```
 
 #### run the playbook to update servers as root via sudo with the encrypted password

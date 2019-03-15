@@ -1,5 +1,5 @@
-# techday-2019 Demo 1
-Automation demo for Cygate Techdays 2019
+# Cygate Techdays 2019
+Automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ## Ansible Demo 1
 

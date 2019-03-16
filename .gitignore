@@ -1,3 +1,5 @@
 .vaultpass*
 .vault-pass*
 *.retry
+ssh_keys/
+id_rsa

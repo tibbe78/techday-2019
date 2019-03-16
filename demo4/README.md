@@ -33,7 +33,7 @@ nano vault_common.yml
 > Add your secret variables or passwords
 ```YAML
 ---
-sudo_password:  cygate
+sudo_password: cygate
 other_secure_varible: SuperSecretVarible
 ```
 

@@ -28,6 +28,7 @@ server1.mylocal
     - name: Update all packages to the latest version
       apt:
         upgrade: dist
+      when: ansible_facts['os_family'] == "Debian"
 ```
 
 #### run the playbook to update servers as root via sudo

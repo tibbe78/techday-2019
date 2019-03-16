@@ -16,3 +16,4 @@
     - name: Update all packages to the latest version
       apt:
         upgrade: dist
+      when: ansible_facts['os_family'] == "Debian"

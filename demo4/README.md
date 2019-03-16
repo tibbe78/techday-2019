@@ -60,5 +60,5 @@ tasks:
 ansible-playbook -i inventory playbook.yml
 ```
 
-### [Demo 5 :whale:](demo5/)
+### [Demo 5](demo5/) :whale:
 Build a docker container with Ansible to use with CheckPoint MGT

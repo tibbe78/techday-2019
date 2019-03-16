@@ -41,5 +41,5 @@ ssh server1.mylocal
 sudo apt upgrade
 ```
 
-### [Demo 4 :lock:](../demo4/)
+### [Demo 4](../demo4/) :lock:
 Secure our sudo password with Ansible Vault

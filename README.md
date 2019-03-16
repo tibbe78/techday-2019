@@ -1,7 +1,7 @@
 # Cygate Techdays 2019
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
-> Also big help from Jostein Martinsen [LinkedIn](https://www.linkedin.com/in/josm/) :thumbsup:
+> Also big help from [Jostein Martinsen](https://www.linkedin.com/in/josm/) :thumbsup:
 
 ## Ansible Demo :computer::penguin:
 

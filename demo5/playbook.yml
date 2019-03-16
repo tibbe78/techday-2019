@@ -13,6 +13,6 @@
         update_cache: yes
         cache_valid_time: 3600
 
-    - name: Update all packages to the latest version
+    - name: Update all packages to the latest version if OS is Debian based
       apt:
         upgrade: dist

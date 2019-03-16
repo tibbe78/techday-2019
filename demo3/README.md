@@ -42,4 +42,4 @@ sudo apt upgrade
 ```
 
 ### [Demo 4 :lock:](../demo4/)
-Next Demo 4 (Secure our sudo password with Ansible Vault)
+Secure our sudo password with Ansible Vault

@@ -37,4 +37,4 @@ ssh-copy-id server1.mylocal
 
 
 ### [Demo 2 :mag:](../demo2/)
-#### Next demo 2 will show how to run some commands directly from command prompt.
+Show how to run some commands directly from command prompt.

@@ -7,13 +7,16 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 Addon files for presentation
 
 ### [Demo 1 :dvd:](demo1/)
-First demo to run (install Ansible)
+Install Ansible
 
 ### [Demo 2 :mag:](demo2/)
-Demo 2 (test ping module and look at gathered facts)
+Test ping module and look at gathered facts with console commands
 
 ### [Demo 3 :book:](demo3/)
-Demo 3 (building our first playbook instead of console commands)
+Building our first playbook instead of console commands
 
 ### [Demo 4 :lock:](demo4/)
-Demo 4 (Secure our sudo password with Ansible Vault)
+Secure our sudo password with Ansible Vault
+
+### [Demo 5 :whale:](demo5/)
+Build a docker container with Ansible to use with CheckPoint MGT

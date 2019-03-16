@@ -60,5 +60,5 @@ tasks:
 ansible-playbook -i inventory playbook.yml
 ```
 
-### [Demo 5 :lock:](../demo5/)
-Next Demo 5 (Secure our sudo password with Ansible Vault)
+### [Demo 5 :whale:](demo5/)
+Build a docker container with Ansible to use with CheckPoint MGT

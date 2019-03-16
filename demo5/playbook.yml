@@ -1,0 +1,18 @@
+---
+- hosts: ubuntu
+  become: true
+  gather_facts: true
+  vars_files:
+    - vault_common.yml
+  vars:
+    ansible_become_pass: "{{ sudo_password }}"
+
+  tasks:
+    - name: Only run update cache if the last one is more than 3600 seconds ago
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist

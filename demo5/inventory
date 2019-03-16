@@ -10,3 +10,7 @@
 [ubuntu]
 server1
 server2
+
+#encrypted sudo pass for all Ubuntu servers
+[ubuntu:vars]
+ansible_become_pass='{{ prod_sudo_password }}'

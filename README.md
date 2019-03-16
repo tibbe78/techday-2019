@@ -21,4 +21,4 @@ Building our first playbook instead of console commands
 Secure our sudo password with Ansible Vault
 
 ### [Demo 5](demo5/) :whale:
-Build a docker container with Ansible to use with CheckPoint MGT
+Build a [Docker](https://www.docker.com/) container with Ansible to use with [CheckPoint](https://www.checkpoint.com/) MGT

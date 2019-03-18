@@ -24,11 +24,11 @@
       volumes:
         - "{{ playbook_dir }}/docker/ssh_keys:/home/cygate/.ssh"
 
-#- hosts: dockerhosts
-#  become: no
-#  gather_facts: no
-#  tasks:
-#    - name: ping hosts
-#      ping:
-#    - name: gather facts
-#      setup:
+- hosts: dockerhosts
+  become: no
+  gather_facts: no
+  tasks:
+    - name: ping hosts
+      ping:
+    - name: gather facts
+      setup:

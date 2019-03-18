@@ -3,15 +3,24 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ## Ansible Demo 5 :whale:
 
+> in this demo my Docker host is the same as Ansible host running Ubuntu 18.10
+> Docker is already installed
+
 ### Build a docker container with Ansible to use with CheckPoint MGT
 
-Using CheckPoints Ansible module https://github.com/CheckPointSW/cpAnsible
+#### Using CheckPoints Ansible module https://github.com/CheckPointSW/cpAnsible
+```sh
+git clone https://github.com/CheckPointSW/cpAnsible
+cp -r ./cpAnsible/check_point_mgmt /usr/share/my_modules
+```
 
 # Create docker group and add user to this group. ReInit group.
-> Now we don't need to sudo for docker
+> So we don't need to sudo for docker jobs
+```sh
 sudo groupadd docker
 sudo gpasswd -a $USER docker
 newgrp docker
+```
 
 #### install docker python on your docker host.
 > so ansible can talk to this.

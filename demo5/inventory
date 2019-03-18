@@ -8,7 +8,7 @@
 
 # A collection of internal Servers
 [dockerhosts]
-cp_api_mgt[01:10]  ansible_connection=docker
+checkpoint_api_01  ansible_connection=docker
 
 [docker]
 localhost ansible_connection=local

@@ -38,6 +38,11 @@ ssh-keygen
 ssh-copy-id server1.mylocal
 ```
 
+#### Test to logon to server1 without passwords (or username...)
+> server1 is a ubuntu server with the same user as the Ansible host.
+```sh
+ssh server1
+```
 
 ### [Demo 2](../demo2/) :mag:
-Show how to run some commands directly from command prompt.
+Show how to run some Ansible commands directly from command prompt towards server1

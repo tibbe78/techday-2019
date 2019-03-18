@@ -39,6 +39,13 @@ RUN pip install git+https://github.com/CheckPointSW/cp_mgmt_api_python_sdk
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
+### Two options here. either use Ansible to deploy docker container or do it via console.
+#### For Ansible deploy only do:
+```sh
+ansible-playbook -i inventory playbook.yml
+```
+
+##### Otherwise do all commands below:
 #### Create docker network
 ```sh
 docker network list | grep -q "mgt_net" || docker network create "mgt_net"
@@ -57,7 +64,8 @@ docker run -d -P \
   --name checkpoint_api_01 checkpoint_api
 ```
 
-#### check if it's running
+### Both Ansible and Commandline version can check from here
+#### check if container is running
 ```sh
 docker ps
 ```

@@ -1,0 +1,34 @@
+---
+- hosts: docker
+  become: false
+  gather_facts: false
+
+  tasks:
+  - name: Create a management network
+    docker_network:
+      name: mgt_net
+
+  - name: Build CheckPoint API image
+    docker_image:
+      path: docker
+      name: checkpoint_api
+
+  - name: Create the docker_container
+    docker_container:
+      name: checkpoint_api_01
+      image: checkpoint_api
+      networks:
+        - name: mgt_net
+          aliases:
+          - mgt
+      volumes:
+        - "{{ playbook_dir }}/docker/ssh_keys:/home/cygate/.ssh"
+
+#- hosts: dockerhosts
+#  become: no
+#  gather_facts: no
+#  tasks:
+#    - name: ping hosts
+#      ping:
+#    - name: gather facts
+#      setup:

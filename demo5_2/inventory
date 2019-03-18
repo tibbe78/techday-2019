@@ -7,19 +7,11 @@
 #   - A hostname/ip can be a member of multiple groups
 
 # Uses the docker connection instead of SSH
-[docker_containers]
-checkpoint_api_01  ansible_connection=docker
-
-[dockerhost]
-localhost ansible_connection=local
-
-[dockerhost:vars]
-ansible_python_interpreter=/usr/bin/python3
-
 [checkpoint_api]
 checkpoint_api_01  ansible_connection=docker
 
 [checkpoint_api:vars]
+# IP to your checkpoint mgt server
 mgmt_server=172.16.59.20
 mgmt_user=admin
-mgmt_password=cygate
+mgmt_password=cygate123

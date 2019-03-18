@@ -10,7 +10,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 > Docker is already installed
 
 > The container from demo 5.1 is running
-
+#### Install the CheckPoint module for Ansible
 #### Using CheckPoints Ansible module https://github.com/CheckPointSW/cpAnsible
 ```sh
 git clone https://github.com/CheckPointSW/cpAnsible

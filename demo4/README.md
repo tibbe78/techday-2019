@@ -5,7 +5,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ### Secure our sudo password from demo 3 and automate this
 
-:exclamation: *using the same simple inventory file with two hosts from demo 3*
+:exclamation: *using the same inventory file with two hosts from demo 3*
 
 :exclamation: *using the same simple playbook from demo 3 as a base*
 

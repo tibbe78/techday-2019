@@ -5,17 +5,26 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ### Building our first playbook instead of console commands and run this playbook
 
-#### use a simple inventory file with two hosts.
+#### add some more server to the inventory and put them in groups
+> The [linux] group point to the other two groups
 ```INI
-[ubuntu]
-server1.mylocal
-server1.mylocal
+[server_internal]
+server1
+server2
+
+[ubuntu_dmz]
+dmz1
+dmz2
+
+[linux:children]
+server_internal
+ubuntu_dmz
 ```
 
 #### write a simple playbook in YAML to update and upgrade servers with apt module
 ```YAML
 ---
-- hosts: ubuntu
+- hosts: linux
   become: true #run as sudo
   gather_facts: true
 

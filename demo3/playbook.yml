@@ -1,5 +1,5 @@
 ---
-- hosts: ubuntu
+- hosts: linux
   become: true
   gather_facts: true
 

@@ -74,4 +74,4 @@ docker exec -it checkpoint_api_01 bash
 ```
 
 ### [Demo 5.2](../demo5_2/) :whale::metal:
-Next Demo 5.2 (Secure our sudo password with Ansible Vault)
+Next Demo 5.2 (Connect to the new CheckPoint docker container via Ansible and do stuff..)

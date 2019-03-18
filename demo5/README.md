@@ -28,11 +28,15 @@ newgrp docker
 pip install docker
 ```
 
-#### install the [CheckPoint MGT API](https://github.com/CheckPointSW/cp_mgmt_api_python_sdk) in a Docker container via the Dockerfile
-> This is what Ansible needs to talk to.
-```sh
-apt install -y python-pip
-pip install -y git+https://github.com/CheckPointSW/cp_mgmt_api_python_sdk
+#### Create a dockerfile with the [CheckPoint MGT API](https://github.com/CheckPointSW/cp_mgmt_api_python_sdk) in a docker folder
+> This is what Ansible will start to create docker image
+```dockerfile
+FROM ubuntu:18.04
+MAINTAINER FullName <email@Address>
+RUN apt-get update
+RUN apt-get install -y git python-pip
+RUN pip install git+https://github.com/CheckPointSW/cp_mgmt_api_python_sdk
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
 #### Generate new keys for your docker container

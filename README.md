@@ -9,10 +9,10 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 Addon files for presentation
 
 ### [Demo 1](demo1/) :dvd:
-Install Ansible
+Install Ansible + test ssh
 
 ### [Demo 2](demo2/) :mag:
-Test ping module and look at gathered facts with console commands
+Run some Ansible commands directly from command prompt towards server1
 
 ### [Demo 3](demo3/) :book:
 Building our first playbook instead of console commands

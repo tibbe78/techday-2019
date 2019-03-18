@@ -28,7 +28,7 @@ newgrp docker
 pip install docker
 ```
 
-#### Create a dockerfile with the [CheckPoint MGT API](https://github.com/CheckPointSW/cp_mgmt_api_python_sdk) in a docker folder
+#### Create a dockerfile with the [CheckPoint MGT API](https://github.com/CheckPointSW/cp_mgmt_api_python_sdk) in a empty folder
 > This is what Ansible will start to create docker image
 ```dockerfile
 FROM ubuntu:18.04
@@ -39,17 +39,12 @@ RUN pip install git+https://github.com/CheckPointSW/cp_mgmt_api_python_sdk
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
-#### Generate new keys for your docker container
-```sh
-/usr/bin/ssh-keygen -q -t rsa -N '' -f ./docker/ssh_keys/id_rsa
-```
-
 #### Create docker network
 docker network list | grep -q "mgt_net" || docker network create "mgt_net"
 
 #### Build docker file
 ```sh
-docker build --tag=cp_mgt_api ./docker/
+docker build --tag=checkpoint_api ./docker/
 ```
 
 #### Start the Docker container
@@ -57,8 +52,7 @@ docker build --tag=cp_mgt_api ./docker/
 docker run -d -P \
   --network='mgt_net' \
   --network-alias mgt \
-  -v "$(pwd)"/docker/ssh_keys:/home/cygate/.ssh \
-  --name cp_mgt_api01 cp_mgt_api
+  --name checkpoint_api_01 checkpoint_api
 ```
 
 #### check if it's running
@@ -68,7 +62,7 @@ docker ps
 
 #### logon to the container with shell
 ```sh
-docker exec -it cp_mgt_api01 bash
+docker exec -it checkpoint_api_01 bash
 ```
 
 ### [Demo 6](../demo6/) :dog:

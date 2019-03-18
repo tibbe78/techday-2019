@@ -1,5 +1,5 @@
 ---
-- hosts: docker
+- hosts: dockerhost
   become: false
   gather_facts: false
 
@@ -21,10 +21,8 @@
         - name: mgt_net
           aliases:
           - mgt
-      volumes:
-        - "{{ playbook_dir }}/docker/ssh_keys:/home/cygate/.ssh"
 
-- hosts: dockerhosts
+- hosts: docker_containers
   become: no
   gather_facts: no
   tasks:

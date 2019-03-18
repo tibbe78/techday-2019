@@ -6,12 +6,12 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
-# A collection of internal Servers
-[dockerhosts]
+# Uses the docker connection instead of SSH
+[docker_containers]
 checkpoint_api_01  ansible_connection=docker
 
-[docker]
+[dockerhost]
 localhost ansible_connection=local
 
-[docker:vars]
+[dockerhost:vars]
 ansible_python_interpreter=/usr/bin/python3

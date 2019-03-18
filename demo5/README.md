@@ -40,7 +40,9 @@ ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
 #### Create docker network
+```sh
 docker network list | grep -q "mgt_net" || docker network create "mgt_net"
+```
 
 #### Build docker file
 ```sh

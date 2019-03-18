@@ -25,12 +25,15 @@ sudo apt install ansible
 ansible --version
 ```
 #### Generate ssh-keys on Ansible master (already exists in demo)
+> not needed if this already have been done in install
 ```sh
 ssh-keygen
 ```
 
-#### Install SSH keys on server 1 (already exists in demo)
-##### *We want to logon without password over SSH, use CyberArk(PAM) to keep secure*
+#### Install public SSH key on all servers (already exists in demo)
+> We want to logon without password over SSH, use CyberArk(PAM) to keep secure*
+
+> Run this command from Ansible host, it puts public key in authorized_keys in /home/[user]/.ssh
 ```sh
 ssh-copy-id server1.mylocal
 ```

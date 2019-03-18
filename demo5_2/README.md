@@ -6,7 +6,9 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### Connect to the new CheckPoint docker container via Ansible and do stuff..
 
 > In this demo my Docker host is the same as Ansible host running Ubuntu 18.10
+
 > Docker is already installed
+
 > The container from demo 5.1 is running
 
 #### Using CheckPoints Ansible module https://github.com/CheckPointSW/cpAnsible

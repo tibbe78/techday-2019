@@ -7,10 +7,11 @@
 #   - A hostname/ip can be a member of multiple groups
 
 # A collection of internal Servers
-[ubuntu]
-server1
-server2
+[dockerhosts]
+cp_api_mgt[01:10]  ansible_connection=docker
 
-#encrypted sudo pass for all Ubuntu servers
-[ubuntu:vars]
-ansible_become_pass='{{ prod_sudo_password }}'
+[docker]
+localhost ansible_connection=local
+
+[docker:vars]
+ansible_python_interpreter=/usr/bin/python3

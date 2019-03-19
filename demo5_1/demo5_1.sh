@@ -18,5 +18,8 @@ docker run -d -P \
   --name cp_api1 cp_api_img
 sleep 1
 
-#Check the container is running again
-docker ps
+# Check the container is running again
+docker ps -s --format "table {{.Names}}: {{.Size}}: {{.RunningFor}}"
+
+# Check memory usage
+docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"

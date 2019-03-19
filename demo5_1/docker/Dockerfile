@@ -2,15 +2,13 @@
 #
 # VERSION               0.0.3
 
-#Download base image Ubuntu 18.04
-FROM ubuntu:18.04
+# Download base image from python repository version 3.7-alpine
+# Alpine is extra small image
+FROM python:3.7-alpine
 MAINTAINER Christofer Tibbelin <christofer.tibbelin@cygate.se>
 
-# Update Software repository
-RUN apt-get update
-
-# Install git & python-pip
-RUN apt-get install -y git python-pip
+# update + install git
+RUN apk add --update git
 
 # Install CheckPoint MGT API to talk to CheckPoint MGT server
 RUN pip install git+https://github.com/CheckPointSW/cp_mgmt_api_python_sdk

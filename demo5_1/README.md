@@ -25,14 +25,15 @@ pip install docker
 #### Create a dockerfile with the [CheckPoint MGT API](https://github.com/CheckPointSW/cp_mgmt_api_python_sdk) in a empty folder (I call this folder docker)
 > This is what Ansible will start to create docker image
 ```dockerfile
-# Use the Ubuntu 18.04 as the base image
-FROM ubuntu:18.04
+# Download base image from python repository version 3.7-alpine
+# Alpine is extra small image
+FROM python:3.7-alpine
 MAINTAINER FullName <email@Address>
-RUN apt-get update
-RUN apt-get install -y git python-pip
-# Install the checkpoint MGT API via pip on the host.
+# use apk to update + install git
+RUN apk add --update git
+# Install CheckPoint MGT API to talk to CheckPoint MGT server
 RUN pip install git+https://github.com/CheckPointSW/cp_mgmt_api_python_sdk
-# Entrypoint is like CMD but it always runs. Plus I fake a deamon to run always.
+#Keep container running Fake as we use docker connection to reach it.
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
@@ -64,14 +65,19 @@ docker run -d -P \
 ```
 
 ### Both Ansible and Commandline version can check from here
-#### check if container is running
+#### check if container is running + diskSize
 ```sh
-docker ps
+docker ps -s --format "table {{.Names}}: {{.Size}}: {{.RunningFor}}"
+```
+
+#### Optional: Check memory usage & cpu
+```sh
+docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 ```
 
 #### Optional: logon to the container with shell
 ```sh
-docker exec -it checkpoint_api_01 bash
+docker exec -it cp_api1 sh
 ```
 
 ### [Demo 5.2](../demo5_2/) :whale::metal:

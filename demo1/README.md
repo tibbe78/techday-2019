@@ -24,10 +24,13 @@ sudo apt install ansible
 ```sh
 ansible --version
 ```
+
 #### Generate ssh-keys on Ansible master (already exists in demo)
 > not needed if this already have been done in install
 ```sh
-ssh-keygen
+if [ ! -f .ssh/id_rsa ]; then
+    /usr/bin/ssh-keygen -q -t rsa -N '' -f .ssh/id_rsa
+fi
 ```
 
 #### Install public SSH key on all servers (already exists in demo)

@@ -49,8 +49,9 @@ docker network list | grep -q "mgt_net" || docker network create "mgt_net"
 ```
 
 #### Build docker image from the dockerfile in the local catalog docker
+> tag is the same as name
 ```sh
-docker build --tag=checkpoint_api ./docker/
+docker build --tag=cp_api-img ./docker/
 ```
 
 #### Start the Docker container and name it checkpoint_api_01
@@ -59,7 +60,7 @@ docker build --tag=checkpoint_api ./docker/
 docker run -d -P \
   --network='mgt_net' \
   --network-alias mgt \
-  --name checkpoint_api_01 checkpoint_api
+  --name cp_api1 cp_api-img
 ```
 
 ### Both Ansible and Commandline version can check from here

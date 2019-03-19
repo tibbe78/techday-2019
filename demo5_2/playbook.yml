@@ -1,5 +1,5 @@
 ---
-- hosts: checkpoint_api
+- hosts: cp_api1
   become: no
   gather_facts: yes
   tasks:

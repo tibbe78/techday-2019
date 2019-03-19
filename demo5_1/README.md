@@ -55,8 +55,8 @@ docker network list | grep -q "mgt_net" || docker network create "mgt_net"
 docker build --tag=cp_api-img ./docker/
 ```
 
-#### Start the Docker container and name it checkpoint_api_01
-> checkpoint_api is the image name/tag from previous command.
+#### Start the Docker container and name it cp_api1
+> cp_api-img is the image name/tag from previous command.
 ```sh
 docker run -d -P \
   --network='mgt_net' \

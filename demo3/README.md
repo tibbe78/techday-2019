@@ -6,7 +6,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### Building our first playbook instead of console commands and run this playbook
 
 #### add some more server to the inventory and put them in groups
-> The [linux] group point to the other two groups
+> The [linux] group point to the other two groups as children
 ```INI
 [server_internal]
 server1

@@ -13,6 +13,8 @@ if [ ! -f .ssh/id_rsa ]; then
 fi
 
 # copy the public key to server1
+# this can also be done via Ansible
 ssh-copy-id server1.mylocal
 
+# test to SSH to server without password
 ssh server1

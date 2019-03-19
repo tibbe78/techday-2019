@@ -1,7 +1,35 @@
 ---
 - hosts: cp_api1
-  become: no
-  gather_facts: yes
   tasks:
-    - name: ping hosts
-      ping:
+  - name: login to checkpoint
+    check_point_mgmt:
+      command: login
+      parameters:
+        username: "{{ mgmt_user }}"
+        password: "{{ mgmt_password }}"
+        management: "{{ mgmt_server }}"
+      fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
+    register: login_response
+  - name: add host
+    check_point_mgmt:
+      command: add-host
+      parameters:
+        name: host_demo
+        ip-address: 1.2.3.5
+      session-data: "{{ login_response }}"
+  - name: add group
+    check_point_mgmt:
+      command: add-group
+      parameters:
+        name: group_demo
+        members:
+          - host_demo
+      session-data: "{{ login_response }}"
+  - name: publish
+    check_point_mgmt:
+      command: publish
+      session-data: "{{ login_response }}"
+  - name: logout
+    check_point_mgmt:
+      command: logout
+      session-data: '{{ login_response }}'

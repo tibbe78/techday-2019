@@ -17,5 +17,17 @@ git clone https://github.com/CheckPointSW/cpAnsible
 cp -r ./cpAnsible/check_point_mgmt /usr/share/my_modules
 ```
 
+#### configure the checkpoint api settings.
+```INI
+[checkpoint_api]
+cp_api1  ansible_connection=docker
+
+[checkpoint_api:vars]
+# IP to your checkpoint mgt server
+mgmt_server=172.16.59.20
+mgmt_user=admin
+mgmt_password=cygate123
+```
+
 ### [Demo 6](../demo6/) :dog:
 Next Demo 6 (Secure our sudo password with Ansible Vault)

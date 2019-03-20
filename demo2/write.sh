@@ -17,7 +17,7 @@ for (( i=0; i<${#foo}; i++ )); do
     done
     comm+=$'\n'
     printf $'\n'
-    $comm
+    eval $comm
     comm=''
     printf "${grn}cygate@ubuntuV1${end}:${blu}~/git\$${end} "
   else
@@ -30,4 +30,4 @@ while [[ $input != "" ]]; do
 done
 printf $'\n'
 comm+=$'\n'
-$comm
+eval $comm

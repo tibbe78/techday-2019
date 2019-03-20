@@ -42,7 +42,7 @@ ubuntu_dmz
 
 #### run the playbook to update servers as root via sudo
 ```sh
-ansible-playbook -i inventory --ask-become-pass playbook.yml
+ansible-playbook -i inventory.ini --ask-become-pass playbook.yml
 ```
 
 #### login to server1 to verify that it's upgraded

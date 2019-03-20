@@ -29,5 +29,9 @@ mgmt_user=admin
 mgmt_password=cygate123
 ```
 
+
+
+> Playbooks can be run in check mode with -C. Then no changes will be done.
+
 ### [Demo 6](../demo6/) :dog:
 Next Demo 6 (Secure our sudo password with Ansible Vault)

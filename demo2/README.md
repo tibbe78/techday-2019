@@ -17,28 +17,28 @@ server2.mylocal
 
 #### run the test module ping against all hosts in this inventory.
 ```sh
-ansible -i inventory -m ping all
+ansible -i inventory.ini -m ping all
 ```
 
 #### run the test module ping against only servers group in this inventory.
 ```sh
-ansible -i inventory -m ping servers
+ansible -i inventory.ini -m ping servers
 ```
 
 #### View all information Ansible have gathered about these host.
 >  This is called 'facts' in Ansible
 ```sh
-ansible -i inventory -m setup all
+ansible -i inventory.ini -m setup all
 ```
 
 #### View only network facts for hosts via subset
 ```sh
-ansible -i inventory -m setup -a 'gather_subset=!all,!any,network' servers
+ansible -i inventory.ini -m setup -a 'gather_subset=!all,!any,network' servers
 ```
 
 #### View only default network facts for hosts via filter
 ```sh
-ansible -i inventory -m setup -a 'filter=ansible_default_ipv4' servers
+ansible -i inventory.ini -m setup -a 'filter=ansible_default_ipv4' servers
 ```
 
 ### [Demo 3](../demo3/) :book:

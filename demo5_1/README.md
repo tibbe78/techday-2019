@@ -40,7 +40,7 @@ ENTRYPOINT ["tail", "-f", "/dev/null"]
 ### Two choices here. either use Ansible to deploy docker container or do it via console.
 #### For Ansible deploy only do:
 ```sh
-ansible-playbook -i inventory playbook.yml
+ansible-playbook -i inventory.ini playbook.yml
 ```
 
 #### Otherwise do all commands below:

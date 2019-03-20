@@ -1,5 +1,11 @@
 ---
-- hosts: cp_api1
+- hosts: checkpoint
+  become: false
+  gather_facts: false
+  vars_files:
+    - vault_common.yml
+  vars:
+    ansible_become_pass: "{{ sudo_password }}"
   tasks:
   - name: login to checkpoint
     check_point_mgmt:

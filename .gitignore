@@ -4,3 +4,5 @@
 ssh_keys/
 id_rsa
 cpAnsible/
+c.sh
+commands.sh

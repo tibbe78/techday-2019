@@ -77,7 +77,7 @@ docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 
 #### Optional: logon to the container with shell
 ```sh
-docker exec -it cp_api1 sh
+docker exec -it cp_api01 sh
 ```
 
 ### [Demo 5.2](../demo5_2/) :whale::metal:

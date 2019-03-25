@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # stop and remove container if running
-docker container stop cp_api_img
-docker container rm cp_api_img
+docker container stop cp_api01 cp_api02
+docker container rm cp_api01 cp_api02
 
 # Build the image from the Dockerfile
 docker build --tag=cp_api_img ./docker/

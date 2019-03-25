@@ -22,6 +22,7 @@ ubuntu_dmz
 ```
 
 #### write a simple playbook in YAML to update and upgrade servers with apt module
+> [Here](https://docs.ansible.com/ansible/latest/modules/apt_module.html) is manual for APT module on Ansible
 ```YAML
 ---
 - hosts: linux
@@ -34,10 +35,14 @@ ubuntu_dmz
         update_cache: yes
         cache_valid_time: 3600
 
-    - name: Update all packages to the latest version if OS is Debian based
+    - name: Safe upgrade all packages to the latest version if OS is Debian based
       apt:
-        upgrade: dist
+        upgrade: yes
       when: ansible_facts['os_family'] == "Debian"
+
+    - name: Clean system with autoremove
+      apt:
+        autoremove: yes
 ```
 
 #### run the playbook to update servers as root via sudo

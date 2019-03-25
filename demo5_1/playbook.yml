@@ -11,12 +11,12 @@
   - name: Build CheckPoint API image
     docker_image:
       path: docker
-      name: checkpoint_api
+      name: cp_api_img
 
   - name: Create the docker_container
     docker_container:
-      name: checkpoint_api_01
-      image: checkpoint_api
+      name: cp_api02
+      image: cp_api_img
       networks:
         - name: mgt_net
           aliases:

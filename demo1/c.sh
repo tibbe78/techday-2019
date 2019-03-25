@@ -5,9 +5,12 @@ blu=$'\e[1;34m'
 blink=$'\e[1;5m'
 end=$'\e[0m'
 
-foo=`cat commandsToWrite.sh`
+foo=`cat commands.sh`
 comm=''
-printf "${grn}cygate@ubuntuV1${end}:${blu}~/git\$${end} "
+
+pwd=`pwd`
+
+printf "${grn}cygate@ubuntuV1${end}:${blu}~${pwd#*/home/cygate}${end}\$ "
 
 for (( i=0; i<${#foo}; i++ )); do
   read -rsn1 input
@@ -19,7 +22,7 @@ for (( i=0; i<${#foo}; i++ )); do
     printf $'\n'
     eval $comm
     comm=''
-    printf "${grn}cygate@ubuntuV1${end}:${blu}~/git\$${end} "
+printf "${grn}cygate@ubuntuV1${end}:${blu}~${pwd#*/home/cygate}${end}\$ "
   else
     comm+="${foo:$i:1}"
     printf "${foo:$i:1}"

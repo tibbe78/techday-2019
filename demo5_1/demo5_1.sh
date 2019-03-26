@@ -18,6 +18,9 @@ docker run -d -P \
   --name cp_api1 cp_api_img
 sleep 1
 
+# Or create all via Ansible
+ansible-playbook -i inventory.ini create_docker.yml
+
 # Check the container is running again
 docker ps -s --format "table {{.Names}}: {{.Size}}: {{.RunningFor}}"
 

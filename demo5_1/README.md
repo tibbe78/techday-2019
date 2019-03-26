@@ -9,7 +9,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 > Docker is already installed
 
 #### Create docker group and add user to this group. ReInit group.
-> So we don't need to sudo for docker jobs
+> So we don't need to sudo for docker jobs on the docker host
 ```sh
 sudo groupadd docker
 sudo gpasswd -a $USER docker
@@ -17,7 +17,7 @@ newgrp docker
 ```
 
 #### install docker python on your docker host. (same as my ansible host)
-> so ansible can talk to this. I had problems with python2 so had to run python3 for some stuff later.
+> so ansible can talk to this. I had problems with python2 so had to run python3 in the inventory
 ```sh
 pip install docker
 ```
@@ -40,7 +40,7 @@ ENTRYPOINT ["tail", "-f", "/dev/null"]
 ### Two choices here. either use Ansible to deploy docker container or do it via console.
 #### For Ansible deploy only do:
 ```sh
-ansible-playbook -i inventory.ini playbook.yml
+ansible-playbook -i inventory.ini create_docker.yml
 ```
 
 #### Otherwise do all commands below:
@@ -55,13 +55,13 @@ docker network list | grep -q "mgt_net" || docker network create "mgt_net"
 docker build --tag=cp_api-img ./docker/
 ```
 
-#### Start the Docker container and name it cp_api1
+#### Start the Docker container and name it cp_api01
 > cp_api-img is the image name/tag from previous command.
 ```sh
 docker run -d -P \
   --network='mgt_net' \
   --network-alias mgt \
-  --name cp_api1 cp_api-img
+  --name cp_api01 cp_api-img
 ```
 
 ### Both Ansible and Commandline version can check from here

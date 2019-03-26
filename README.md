@@ -34,5 +34,5 @@ Use the new Ansible module and docker container to push a change to the [CheckPo
 ### [Demo 6](demo6/) :blue_book::green_book::orange_book:
 Show how roles can simplify playbook complexity
 
-### [Demo 7](demo7/) :runner::books::godmode:
+### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

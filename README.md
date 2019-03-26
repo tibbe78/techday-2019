@@ -20,7 +20,7 @@ Building our first playbook instead of console commands
 ### [Demo 4](demo4/) :lock:
 Secure our sudo password with Ansible Vault
 
-## Demo 5 is to use Ansible to push a Firewall Policy to a CheckPoint firewall.
+### Demo 5 is to use Ansible to push a Firewall Policy to a CheckPoint firewall.
 > CheckPoint have written a custom Ansible module for their API software.
 
 > There is also a API software written i Python that the Ansible module need to talk to.
@@ -30,3 +30,9 @@ Build a [Docker](https://www.docker.com/) container and install Check Points API
 
 ### [Demo 5.2](demo5_2/) :whale::ballot_box_with_check::metal:
 Use the new Ansible module and docker container to push a change to the [CheckPoint](https://www.checkpoint.com/) MGT
+
+### [Demo 6](demo6/) :blue_book::green_book::orange_book:
+Show how roles can simplify playbook complexity
+
+### [Demo 7](demo7/) :runner::books::godmode:
+Use RunDeck to bind it all together.

@@ -1,9 +1,9 @@
 ### Cygate Techdays 2019
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
-## Ansible Demo 5.1 :whale::point_up:
+## Ansible Demo 5.1 :whale::ballot_box_with_check::point_up:
 
-### Build a docker container with Ansible or console commands to use with CheckPoint MGT
+### Build a [Docker](https://www.docker.com/) container and install Check Points API software in it.
 
 > in this demo my Docker host is the same as Ansible host running Ubuntu 18.10
 > Docker is already installed

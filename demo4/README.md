@@ -5,7 +5,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ### Secure our sudo password from demo 3 and automate this
 
-:exclamation: *using the same inventory file with two hosts from demo 3*
+:exclamation: *using the same inventory file from demo 3*
 
 :exclamation: *using the same simple playbook from demo 3 as a base*
 
@@ -60,5 +60,5 @@ tasks:
 ansible-playbook -i inventory.ini playbook.yml
 ```
 
-### [Demo 5.1](../demo5_1/) :whale::point_up:
-Build a [Docker](https://www.docker.com/) container with Ansible to use with [CheckPoint](https://www.checkpoint.com/) MGT
+### [Demo 5.1](../demo5_1/) :whale::ballot_box_with_check::point_up:
+Build a [Docker](https://www.docker.com/) container and install Check Points API software in it.

@@ -26,5 +26,5 @@
   become: no
   gather_facts: no
   tasks:
-    - name: ping hosts
+    - name: ping the new docker containers
       ping:

@@ -80,5 +80,5 @@ docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 docker exec -it cp_api01 sh
 ```
 
-### [Demo 5.2](../demo5_2/) :whale::metal:
-Next Demo 5.2 (Connect to the new CheckPoint docker container via Ansible and do stuff..)
+### [Demo 5.2](../demo5_2/) :whale::ballot_box_with_check::metal:
+Use the new Ansible module and docker container to push a change to the [CheckPoint](https://www.checkpoint.com/) MGT

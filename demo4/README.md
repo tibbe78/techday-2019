@@ -57,7 +57,7 @@ tasks:
 #### run the playbook to update servers as root via sudo with the encrypted password
 > Now we don't need to provide the sudo password and it's collected automatically.
 ```sh
-ansible-playbook -i inventory.ini playbook.yml
+ansible-playbook -i inventory.ini upgrade_linux.yml
 ```
 
 ### [Demo 5.1](../demo5_1/) :whale::ballot_box_with_check::point_up:

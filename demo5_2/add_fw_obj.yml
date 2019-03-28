@@ -3,11 +3,9 @@
   become: false
   gather_facts: false
   vars_files:
-    - vault_common.yml
-  vars:
-    ansible_become_pass: "{{ sudo_password }}"
+    - vault_prod.yml
   tasks:
-  - name: login to checkpoint
+  - name: login to checkpoint MGT via the CheckPoint Module
     check_point_mgmt:
       command: login
       parameters:
@@ -16,6 +14,7 @@
         management: "{{ mgmt_server }}"
       fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
     register: login_response
+
   - name: add host
     check_point_mgmt:
       command: add-host
@@ -23,6 +22,7 @@
         name: host_demo
         ip-address: 1.2.3.5
       session-data: "{{ login_response }}"
+
   - name: add group
     check_point_mgmt:
       command: add-group
@@ -31,10 +31,12 @@
         members:
           - host_demo
       session-data: "{{ login_response }}"
+
   - name: publish
     check_point_mgmt:
       command: publish
       session-data: "{{ login_response }}"
+
   - name: logout
     check_point_mgmt:
       command: logout

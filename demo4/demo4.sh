@@ -13,4 +13,4 @@ ansible-vault encrypt --encrypt-vault-id common vault_common.yml
 # Check that it's encrypted
 cat vault_common.yml
 # Run the playbook without need of sudo.
-ansible-playbook -i inventory.ini playbook.yml
+ansible-playbook -i inventory.ini upgrade_linux.yml

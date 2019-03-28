@@ -1,0 +1,40 @@
+---
+- hosts: checkpoint
+  become: false
+  gather_facts: false
+  vars_files:
+    - vault_prod.yml
+  tasks:
+  - name: login to checkpoint MGT via the CheckPoint Module
+    check_point_mgmt:
+      command: login
+      parameters:
+        username: "{{ mgmt_user }}"
+        password: "{{ mgmt_password }}"
+        management: "{{ mgmt_server }}"
+      fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
+    register: login_response
+
+  - name: remove group
+    check_point_mgmt:
+      command: delete-group
+      parameters:
+        name: api_created_group
+      session-data: "{{ login_response }}"
+
+  - name: remove host
+    check_point_mgmt:
+      command: delete-host
+      parameters:
+        name: api_created_host
+      session-data: "{{ login_response }}"
+
+  - name: publish
+    check_point_mgmt:
+      command: publish
+      session-data: "{{ login_response }}"
+
+  - name: logout
+    check_point_mgmt:
+      command: logout
+      session-data: '{{ login_response }}'

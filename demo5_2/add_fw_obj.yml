@@ -15,22 +15,56 @@
       fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
     register: login_response
 
-  - name: add host
+  - name: add host 'api_created_host'
     check_point_mgmt:
       command: add-host
       parameters:
-        name: host_demo
+        name: api_created_host
         ip-address: 1.2.3.5
       session-data: "{{ login_response }}"
 
-  - name: add group
+  - name: add group 'api_created_group'
     check_point_mgmt:
       command: add-group
       parameters:
-        name: group_demo
+        name: api_created_group
         members:
-          - host_demo
+          - api_created_host
       session-data: "{{ login_response }}"
+
+  - name: create new tcp service 'tcp_1005_script'
+    check_point_mgmt:
+      command: add-service-tcp
+      parameters:
+        name: tcp_1005_script
+        port: '1005'
+      session-data: '{{ login_response }}'
+
+  - name: create a section called 'script_rules'
+    check_point_mgmt:
+      command: add-access-section
+      parameters:
+        layer: Network
+        name: script_rules
+        position: 1
+      session-data: '{{ login_response }}'
+
+  - name: create rule at the top of a section called 'script_rules'
+    check_point_mgmt:
+      command: add-access-rule
+      parameters:
+        layer: network
+        name: created by ansible playbook
+        position:
+          top: script_rules
+        source:
+          - any
+        destination:
+          - api_created_host
+        service:
+          - tcp_1005
+        action: accept
+      session-data: '{{ login_response }}'
 
   - name: publish
     check_point_mgmt:

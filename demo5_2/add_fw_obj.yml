@@ -46,7 +46,7 @@
       parameters:
         layer: Network
         name: script_rules
-        position: 1
+        position: top
       session-data: '{{ login_response }}'
 
   - name: create rule at the top of a section called 'created by ansible playbook'
@@ -56,7 +56,7 @@
         layer: network
         name: created by ansible playbook
         position:
-          top: script_rules
+          below: script_rules
         source:
           - any
         destination:
@@ -64,6 +64,8 @@
         service:
           - tcp_1005_script
         action: accept
+        track:
+          type: log
       session-data: '{{ login_response }}'
 
   - name: publish

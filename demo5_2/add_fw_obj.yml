@@ -62,7 +62,7 @@
         destination:
           - api_created_host
         service:
-          - tcp_1005
+          - tcp_1005_script
         action: accept
       session-data: '{{ login_response }}'
 

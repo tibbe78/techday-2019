@@ -15,6 +15,22 @@
       fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
     register: login_response
 
+  - name: Delete the rule 'created by ansible playbook'
+    check_point_mgmt:
+      command: delete-access-rule
+      parameters:
+        layer: network
+        name: created by ansible playbook
+      session-data: '{{ login_response }}'
+
+  - name: delete a section called 'script_rules'
+    check_point_mgmt:
+      command: delete-access-section
+      parameters:
+        layer: Network
+        name: script_rules
+      session-data: '{{ login_response }}'
+
   - name: remove group
     check_point_mgmt:
       command: delete-group
@@ -27,6 +43,13 @@
       command: delete-host
       parameters:
         name: api_created_host
+      session-data: "{{ login_response }}"
+
+  - name: remove service
+    check_point_mgmt:
+      command: delete-service-tcp
+      parameters:
+        name: tcp_1005_script
       session-data: "{{ login_response }}"
 
   - name: publish

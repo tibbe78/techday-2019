@@ -31,21 +31,21 @@
         name: script_rules
       session-data: '{{ login_response }}'
 
-  - name: remove group
+  - name: remove group 'api_created_group'
     check_point_mgmt:
       command: delete-group
       parameters:
         name: api_created_group
       session-data: "{{ login_response }}"
 
-  - name: remove host
+  - name: remove host 'api_created_host'
     check_point_mgmt:
       command: delete-host
       parameters:
         name: api_created_host
       session-data: "{{ login_response }}"
 
-  - name: remove service
+  - name: remove service 'tcp_1005_script'
     check_point_mgmt:
       command: delete-service-tcp
       parameters:

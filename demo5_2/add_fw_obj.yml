@@ -49,7 +49,7 @@
         position: 1
       session-data: '{{ login_response }}'
 
-  - name: create rule at the top of a section called 'script_rules'
+  - name: create rule at the top of a section called 'created by ansible playbook'
     check_point_mgmt:
       command: add-access-rule
       parameters:

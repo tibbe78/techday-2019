@@ -5,6 +5,10 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ### How Ansible roles can simplify playbook complexity
 
+ansible-galaxy -p ./ install geerlingguy.firewall
+ansible-galaxy init websiteX
+
+
 
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

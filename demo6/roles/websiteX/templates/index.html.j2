@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
   <head>
-    <title>Hello World</title>
+    <title>{{ website_name | default("Unknown Site") }}</title>
   </head>
   <body>
-    <p>It worked.. <strong>YEAHAA</strong> Anssible roles <strong>Works</strong> and is fun</p>
+    <p>It worked.. <strong>{ website_name | default("Unknown Site") }}</strong> Anssible roles <strong>Works</strong> and is fun</p>
   </body>
 </html>

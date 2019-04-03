@@ -12,27 +12,27 @@ ansible-galaxy -p ./ install geerlingguy.firewall
 ansible-galaxy init websiteX --offline
 ```
 
-> It then creates a starting structure for a role.
+> "ansible-galaxy init" then creates a starting structure for a role.
 
-> You can remove the stuff you don't need
-``` html
-./websiteX
-├── defaults
+> You can remove the stuff you don't need from this folder structure
+``` py
+websiteX
+├── defaults #Default variables
 │   └── main.yml
-├── files
-│   └── index.html
-├── handlers
+├── files #Files you need in your role that you don`t change.
+│   └── index.html #I have added a index.html here for my website
+├── handlers #Tasks that will only be run once. ex service restart
 │   └── main.yml
-├── meta
+├── meta #Metadata about this role
 │   └── main.yml
-├── README.md
-├── tasks
+├── README.md #Description of the role
+├── tasks #All tasks you have for this role.
 │   └── main.yml
-├── templates
-├── tests
+├── templates #Templates using jinja2 template language.
+├── tests #If you have automatic testing in your role
 │   ├── inventory
 │   └── test.yml
-└── vars
+└── vars #Variables that will override the defaults.
     └── main.yml
 ```
 

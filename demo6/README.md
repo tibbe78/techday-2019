@@ -33,7 +33,6 @@ websiteX
 #### My role websiteX should install and configure a server to be my public website for our DMZ
 > Default location for roles is either /etc/ansible/roles or ~/.ansible/roles\
 > But i have put the roles I use in the roles folder localy in demo6
-
 #### Created a simple webpage and put it under files as index.html
 ```html
 <!doctype html>

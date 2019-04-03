@@ -17,7 +17,6 @@ websiteX
 ├── defaults #Default variables
 │   └── main.yml #main.yml is the startfile in each folder
 ├── files #Files you need in your role that you don`t change.
-│   └── index.html #I have added a index.html here for my website
 ├── handlers #Tasks that will only be run once. ex service restart
 │   └── main.yml #Ansible always start reading main.yml in each folder
 ├── meta #Metadata about this role
@@ -33,18 +32,36 @@ websiteX
 #### My role websiteX should install and configure a server to be my public website for our DMZ
 > Default location for roles is either /etc/ansible/roles or ~/.ansible/roles\
 > But i have put the roles I use in the roles folder localy in demo6
-#### Created a simple webpage and put it under files as index.html
+#### Created a simple webpage and put it under templates as index.html.j2
+> we use jinja2 to insert website name and servername from varibles.
 ```html
 <!doctype html>
 <html>
   <head>
-    <title>Hello World</title>
+    <title>{{ website_name | default("Unknown Site") }}</title>
   </head>
   <body>
-    <p>It worked.. <strong>YEAHAA</strong> Ansible roles <strong>Rulez</strong> and is fun</p>
+    <p>It worked.. <strong>{{ website_name }}</strong> on server {{ ansible_facts['nodename'] }} Anssible roles <strong>Works</strong> and is fun</p>
   </body>
 </html>
 ```
-
+#### we also split up our tasks in four files to make it easier to read.
+> main.yml i always called, it calls the other ones in order.
+```sh
+websiteX/tasks/
+├── main.yml #always runs at start
+├── install.yml #install apache2
+├── configure.yml #configure apache2
+└── service.yml #start apache2
+```
+#### we create a new handler in main.yml in folder handlers
+> handlers will only run once, good for restarting services after changes.\
+> It's the name of the handler that will be used for identifier.
+```sh
+- name: restart_apache_service
+  service:
+    name: apache2
+    state: restarted
+```
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

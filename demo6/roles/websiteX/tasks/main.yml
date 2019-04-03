@@ -1,5 +1,5 @@
 ---
 # tasks file for websiteX
-- include install.yml
-- include configure.yml
-- include service.yml
+- include: install.yml
+- include: configure.yml
+- include: service.yml

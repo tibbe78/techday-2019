@@ -25,7 +25,7 @@ websiteX
 ├── README.md #Description of the role
 ├── tasks #All tasks you have for this role.
 │   └── main.yml #Ansible always start reading main.yml in each folder
-├── templates #Templates using jinja2 template language.
+├── templates #Templates using jinja2 template language. Like files but can be modified
 ├── tests #If you have automatic testing in your role
 └── vars #Variables that will override the defaults.
     └── main.yml #Ansible always start reading main.yml in each folder
@@ -33,6 +33,19 @@ websiteX
 #### My role websiteX should install and configure a server to be my public website for our DMZ
 > Default location for roles is either /etc/ansible/roles or ~/.ansible/roles\
 > But i have put the roles I use in the roles folder localy in demo6
+
+#### Created a simple webpage and put it under files as index.html
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Hello World</title>
+  </head>
+  <body>
+    <p>It worked.. <strong>YEAHAA</strong> Ansible roles <strong>Rulez</strong> and is fun</p>
+  </body>
+</html>
+```
 
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

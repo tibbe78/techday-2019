@@ -10,7 +10,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ansible-galaxy -p ./ install geerlingguy.firewall
 ansible-galaxy init websiteX --offline
 ```
-> "ansible-galaxy init" then creates a starting structure for a role.<br/>
+> "ansible-galaxy init" then creates a starting structure for a role.\
 > You can remove the stuff you don't need from this folder structure
 ```sh
 websiteX

@@ -31,5 +31,8 @@ websiteX
     └── main.yml #Ansible always start reading main.yml in each folder
 ```
 #### My role websiteX should install and configure a server to be my public website for our DMZ
+> Default location for roles is either /etc/ansible/roles or ~/.ansible/roles\
+> But i have put the rules I use in the same demo6 folder.
+
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

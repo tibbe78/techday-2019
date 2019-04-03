@@ -5,11 +5,11 @@
     src: apache2.conf
     dest: /etc/apache2/apache2.conf
   notify:
-    - restart apache service
+    - restart_apache_service
 
 - name: Send index.html from template
   template:
     src: index.html.j2
     dest: /var/www/html/index.html
   notify:
-    - restart apache service
+    - restart_apache_service

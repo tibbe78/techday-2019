@@ -15,7 +15,7 @@ ansible-galaxy init websiteX --offline
 > "ansible-galaxy init" then creates a starting structure for a role.
 
 > You can remove the stuff you don't need from this folder structure
-``` py
+```bash
 websiteX
 ├── defaults #Default variables
 │   └── main.yml
@@ -30,8 +30,6 @@ websiteX
 │   └── main.yml
 ├── templates #Templates using jinja2 template language.
 ├── tests #If you have automatic testing in your role
-│   ├── inventory
-│   └── test.yml
 └── vars #Variables that will override the defaults.
     └── main.yml
 ```

@@ -1,0 +1,3 @@
+### Cygate Techdays 2019
+Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
+## Archive of stuff...

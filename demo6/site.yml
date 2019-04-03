@@ -1,0 +1,11 @@
+---
+  hosts: dmz_web
+  become: true
+  gather_facts: true
+  vars_files:
+    - vault_common.yml
+  vars:
+    ansible_become_pass: "{{ sudo_password }}"
+  roles:
+    - websiteX
+    - geerlingguy.firewall

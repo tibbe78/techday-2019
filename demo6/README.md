@@ -15,7 +15,7 @@ ansible-galaxy -p ./ install geerlingguy.firewall
 ansible-galaxy init websiteX --offline
 ```
 
-> "ansible-galaxy init" then creates a starting structure for a role.
+> "ansible-galaxy init" then creates a starting structure for a role.  
 > You can remove the stuff you don't need from this folder structure
 ```bash
 websiteX

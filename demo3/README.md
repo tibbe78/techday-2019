@@ -1,10 +1,7 @@
 ### Cygate Techdays 2019
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
-
 ## Ansible Demo 3 :book:
-
 ### Building our first playbook instead of console commands and run this playbook
-
 #### add some more server to the inventory and put them in groups
 > The [linux] group point to the other two groups as children
 ```INI
@@ -20,7 +17,6 @@ dmz2
 server_internal
 ubuntu_dmz
 ```
-
 #### write a simple playbook in YAML to update and upgrade servers with apt module
 > [Here](https://docs.ansible.com/ansible/latest/modules/apt_module.html) is manual for APT module on Ansible
 ```YAML
@@ -44,17 +40,14 @@ ubuntu_dmz
       apt:
         autoremove: yes
 ```
-
 #### run the playbook to update servers as root via sudo
 ```sh
 ansible-playbook -i inventory.ini --ask-become-pass playbook.yml
 ```
-
 #### login to server1 to verify that it's upgraded
 ```sh
 ssh server1.mylocal
 sudo apt upgrade
 ```
-
 ### [Demo 4](../demo4/) :lock:
 Secure our sudo password with Ansible Vault

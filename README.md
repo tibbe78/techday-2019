@@ -3,7 +3,7 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 > Also big help from [Jostein Martinsen](https://www.linkedin.com/in/josm/) :thumbsup:
 ## Ansible Demo :computer::penguin:
 ### [Presentation](presentation/) :chart_with_downwards_trend:
-Addon files for presentation
+Presentation files
 ### [Demo 1](demo1/) :dvd:
 Install Ansible + test ssh
 ### [Demo 2](demo2/) :mag:

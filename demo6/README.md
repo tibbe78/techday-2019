@@ -5,7 +5,10 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 
 ### How Ansible roles can simplify playbook complexity
 
-#### Lets get one public role from ansible galaxy and also create one of our own.
+#### Ansible Roles simplify playbooks by splitting up them in smaller parts and making them more modular
+> [Ansible Galaxy](https://galaxy.ansible.com) is the public repository for roles
+
+#### Lets get one public role from Ansible Galaxy and also create one of our own.
 > geerlingguy.firewall is a public role that installs the iptables firewall on the server.
 ```sh
 ansible-galaxy -p ./ install geerlingguy.firewall

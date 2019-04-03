@@ -1,21 +1,16 @@
 ### Cygate Techdays 2019
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
-
 ## Ansible Demo 6 :blue_book::green_book::orange_book:
-
 ### How Ansible roles can simplify playbook complexity
-
 #### Ansible Roles simplify playbooks by splitting up them in smaller parts and making them more modular
 > [Ansible Galaxy](https://galaxy.ansible.com) is the public repository for roles
-
 #### Lets get one public role from Ansible Galaxy and also create one of our own.
 > geerlingguy.firewall is a public role that installs the iptables firewall on the server.
 ```sh
 ansible-galaxy -p ./ install geerlingguy.firewall
 ansible-galaxy init websiteX --offline
 ```
-
-> "ansible-galaxy init" then creates a starting structure for a role.  
+> "ansible-galaxy init" then creates a starting structure for a role.
 > You can remove the stuff you don't need from this folder structure
 ```bash
 websiteX
@@ -36,6 +31,5 @@ websiteX
     └── main.yml #Ansible always start reading main.yml in each folder
 ```
 #### My role websiteX should install and configure a server to be my public website for our DMZ
-
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

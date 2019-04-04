@@ -76,5 +76,5 @@ ansible-playbook -i inventory.ini site.yml --syntax-check
 ansible-playbook -i inventory.ini site.yml
 ```
 > Now check that the webserver is working and the index.html is correct.
-### [Demo 7](demo7/) :runner::books::grin:
+### [Demo 7](../demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

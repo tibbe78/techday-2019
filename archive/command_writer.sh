@@ -1,6 +1,6 @@
 #!/bin/bash
 # Fake command writer
-# reads from commands.sh and prints and run these commands whatever the user press on the keyboard.
+# reads from commands.txt and prints and run these commands whatever the user press on the keyboard.
 # Made by Christofer Tibbelin + Google + Internet
 # Colors for fake command prompt
 # Green
@@ -13,7 +13,7 @@ blink=$'\e[1;5m'
 end=$'\e[0m'
 
 # Store the commands file in the commands varible
-commands=`cat commands.sh`
+commands=`cat commands.txt`
 # command varible is each command we fake type in.
 # This will be filled in one character at the time from the commands varible
 command=''
@@ -50,7 +50,7 @@ for (( i=0; i<${#commands}; i++ )); do
     printf "${commands:$i:1}"
   fi
 done
-# This is just for the last line of the commands.sh it don't have a ending new line character
+# This is just for the last line of the commands.txt it don't have a ending new line character
 while [[ $input != "" ]]; do
   read -rsn1 input
 done

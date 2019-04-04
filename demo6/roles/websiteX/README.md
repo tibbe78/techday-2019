@@ -4,6 +4,31 @@ websiteX
 The Role installes apache2 on ubuntu and copies one http.conf file from files. It also uses templates to create a new file for index.html
 It the restart the service if there have been a change using the handlers
 
+Files and folderstructure
+
+roles/websiteX/
+├── defaults
+│   └── main.yml
+├── files
+│   └── apache2.conf
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   ├── configure.yml
+│   ├── install.yml
+│   ├── main.yml
+│   └── service.yml
+├── templates
+│   └── index.html.j2
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+
 Requirements
 ------------
 

@@ -8,9 +8,12 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 > geerlingguy.firewall is a public role that installs the iptables firewall on the server.
 ```sh
 ansible-galaxy -p ./ install geerlingguy.firewall
+```
+> "ansible-galaxy init" creates a starting folder structure for a role.\
+> I'm creating a role called websiteX and that it's my own with the --offline argument.
+```sh
 ansible-galaxy init websiteX --offline
 ```
-> "ansible-galaxy init" then creates a starting structure for a role.\
 > You can remove the stuff you don't need from this folder structure
 ```sh
 websiteX

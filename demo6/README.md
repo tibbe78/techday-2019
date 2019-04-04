@@ -71,8 +71,10 @@ websiteX/tasks/
 ansible-playbook -i inventory.ini site.yml --syntax-check
 ```
 #### If it's ok you can then run it in a development environment.
+> It's smart to create a snapshot of your virtual dmz webserver before you run this, as you can easily revert back for testing.
 ```sh
 ansible-playbook -i inventory.ini site.yml
 ```
+> Now check that the webserver is working and the index.html is correct.
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

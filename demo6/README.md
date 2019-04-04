@@ -63,5 +63,13 @@ websiteX/tasks/
     name: apache2
     state: restarted
 ```
+#### You can test your playbooks and roles with the syntax-check option
+```sh
+ansible-playbook -i inventory.ini site.yml --syntax-check
+```
+#### If it's ok you can then run it in a development environment.
+```sh
+ansible-playbook -i inventory.ini site.yml
+```
 ### [Demo 7](demo7/) :runner::books::grin:
 Use RunDeck to bind it all together.

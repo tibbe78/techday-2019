@@ -4,6 +4,7 @@
   gather_facts: false
   vars_files:
     - vault_prod.yml
+    - fw_policy_changes.yml
   tasks:
   - name: login to checkpoint MGT via the CheckPoint Module
     check_point_mgmt:
@@ -15,22 +16,24 @@
       fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
     register: login_response
 
-  - name: add host 'api_created_host'
+  - name: add host '{{ host.name }}' with IP {{ host.ip }}
     check_point_mgmt:
       command: add-host
       parameters:
-        name: api_created_host
-        ip-address: 1.2.3.5
+        name: "{{ host.name }}"
+        ip-address: "{{ host.ip }}"
       session-data: "{{ login_response }}"
+    when: {{ add_new_host }}
 
-  - name: add group 'api_created_group'
+  - name: add group '{{ group.name }}'
     check_point_mgmt:
       command: add-group
       parameters:
-        name: api_created_group
+        name: "{{ group.name }}"
         members:
-          - api_created_host
+          - "{{ group.hosts[0] }}"
       session-data: "{{ login_response }}"
+    when: {{ add_new_group }}
 
   - name: create new tcp service 'tcp_1005_script'
     check_point_mgmt:
@@ -45,7 +48,7 @@
       command: add-access-section
       parameters:
         layer: Network
-        name: script_rules
+        name: api_rules
         position: top
       session-data: '{{ login_response }}'
 

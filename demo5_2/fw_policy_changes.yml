@@ -24,7 +24,7 @@ fw:
   group:
     name: api_created_group
     hosts:
-      - {{ host.name }}
+      - {{ fw.host.name }}
 
   tcp_service:
     name: api_tcp_1005
@@ -32,7 +32,7 @@ fw:
 
   section:
     name: api_rules
-    layer: {{ policy_layer }}
+    layer: {{ fw.policy_layer }}
     position: top
 
   policy:

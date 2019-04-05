@@ -2,38 +2,44 @@
   # YAML File to describe the firewall policy changes to be done.
   # Just alot of variables to use in the add_fw_obj.yml
 
-add_new_host: yes
-add_new_group: yes
-add_new_tcp_service: yes
-add_new_section: yes
-add_new_policy: yes
 
-# Can be network, NAT or threat
-policy_layer: network
 
-host:
-  name: api_created_host
-  ip: 1.2.3.4
 
-group:
-  name: api_created_group
-  hosts:
-    - {{ host.name }}
+#Firewall object to keep clean from other ansible varibles.
+fw:
+  # Boolean to select what to do
+  add_new_host: yes
+  add_new_group: yes
+  add_new_tcp_service: yes
+  add_new_section: yes
+  add_new_policy: yes
 
-tcp_service:
-  name: api_tcp_1005
-  port: 1005
+  # Can be network, NAT or threat
+  policy_layer: network
 
-section:
-  name: api_rules
-  layer: {{ policy_layer }}
-  position: top
+  host:
+    name: api_created_host
+    ip: 1.2.3.4
 
-policy:
-  name: created by ansible playbook
-  layer: {{ policy_layer }}
-  position_below: {{ section.name }}
-  source: any
-  destination: {{ group.name }}
-  service: {{ tcp_service.name }}
-  action: accept
+  group:
+    name: api_created_group
+    hosts:
+      - {{ host.name }}
+
+  tcp_service:
+    name: api_tcp_1005
+    port: 1005
+
+  section:
+    name: api_rules
+    layer: {{ policy_layer }}
+    position: top
+
+  policy:
+    name: created by ansible playbook
+    layer: {{ policy_layer }}
+    position_below: {{ section.name }}
+    source: any
+    destination: {{ group.name }}
+    service: {{ tcp_service.name }}
+    action: accept

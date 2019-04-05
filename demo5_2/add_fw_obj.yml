@@ -16,22 +16,21 @@
       fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
     register: login_response
 
-  - name: add host '{{ host.name }}' with IP {{ host.ip }}
+  - name: add host '{{ fw.host.name }}' with IP {{ fw.host.ip }}
     check_point_mgmt:
       command: add-host
       parameters:
-        name: "{{ host.name }}"
-        ip-address: "{{ host.ip }}"
-      session-data: "{{ login_response }}"
-    when: {{ add_new_host }}
+        name: {{ fw.host.name }}
+        ip-address: {{ fw.host.ip }}
+      session-data: {{ login_response }}
+    when: {{ fw.add_new_host }}
 
   - name: add group '{{ group.name }}'
     check_point_mgmt:
       command: add-group
       parameters:
         name: "{{ group.name }}"
-        members:
-          - "{{ group.hosts[0] }}"
+        members: {{ group.hosts }}
       session-data: "{{ login_response }}"
     when: {{ add_new_group }}
 

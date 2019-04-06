@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    hosts:
+      - name: "api_created_host1"
+        ip: "10.32.22.10"
+      - name: "api_created_host2"
+        ip: "10.32.22.11"
+      - name: "api_created_host3"
+        ip: "10.32.22.12"
+
+    group:
+      name: "api_created_group"
+      hosts:
+        - "{{ hosts }}"
+
+  tasks:
+  - name: "Print host name"
+    debug:
+      msg: "{{ hosts | map(attribute='name') | list }}"

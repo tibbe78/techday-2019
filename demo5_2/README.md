@@ -2,18 +2,18 @@
 Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ## Ansible Demo 5.2 :whale::ballot_box_with_check::metal:
 ### Use the new Ansible module and docker container to push a change to the [CheckPoint](https://www.checkpoint.com/) MGT
-> In this demo my Docker host is the same as Ansible host running Ubuntu 18.10
-> Docker is already installed
+> In this demo my Docker host is the same as Ansible host running Ubuntu 18.10\
+> Docker is already installed\
 > The container from demo 5.1 is running
 #### Install the CheckPoint module for Ansible
-#### Using CheckPoints Ansible module https://github.com/CheckPointSW/cpAnsible
-> /usr/share/my_modules is the default place for modules but can be put elsewhere also
+#### Using [CheckPoints Ansible module](https://github.com/CheckPointSW/cpAnsible)
+> /usr/share/my_modules is the default place for ansible modules but can be put elsewhere also
 ```sh
 git clone https://github.com/CheckPointSW/cpAnsible
 cp -r ./cpAnsible/check_point_mgmt /usr/share/my_modules
 ```
 #### configure the checkpoint api settings in the inventory.
-> We use the docker connection instead of SSH to connect to host.
+> We use the docker connection instead of SSH to connect to host.\
 > Also add your checkpoint MGT server info.
 ```INI
 [checkpoint_api]
@@ -29,10 +29,28 @@ mgmt_user=admin
 ```sh
 sudo apt install python-netaddr
 ```
-#### Then there is alot of settings in the different yml files.\
+#### Then there is alot of settings in the different yml files.
 > [fw_policy_changes.yml](fw_policy_changes.yml) contains the information about the changes I wan't to do. it's easy to read and it's used i the actual playbooks.\
 > [add_fw_obj.yml](add_fw_obj.yml) is the playbook that adds the information from the fw_policy changes to the Firewall\
 > [del_fw_obj.yml](del_fw_obj.yml) just removes it again. so I can easily repeat the demo.
+#### we include the fw_policy_changes.yml in our playbook so we can reference the values
+```yml
+- hosts: checkpoint
+  become: false
+  gather_facts: false
+  vars_files:
+    - vault_prod.yml
+    - fw_policy_changes.yml
+```
+#### to add the policys to the firewall just run the playbook.
+> First check that the checkpoint api container is running first.
+```sh
+docker ps
+ansible-playbook -i inventory.ini add_fw_obj.yml
+```
 > Playbooks can be run in check mode with -C. Then no changes will be done.
+```sh
+ansible-playbook -C -i inventory.ini add_fw_obj.yml
+```
 ### [Demo 6](../demo6/) :blue_book::green_book::orange_book:
 Show how roles can simplify playbook complexity

@@ -1,18 +1,20 @@
 ---
 # YAML File to describe the firewall policy changes to be done.
-# Just alot of variables to use in the add_fw_obj.yml
-# Firewall object to keep clean from other ansible varibles.
+# Just alot of variables to use in the playbooks
+# try to use unique variable names to keep clean from other ansible varibles.
 
-# Boolean to select what to do
+# Boolean to select what sections to run the playbook have conditions to check these
 add_new_host: true
 add_new_group: true
 add_new_tcp_service: true
 add_new_section: true
 add_new_policy: true
 
-# Can be network, NAT or threat
+
+# Which layer should we install to, can be network, NAT or threat it think?
 policy_layer: "network"
 
+# a list of hosts with their IP to add to the firewall, these will be iterated in the playbook
 fw_hosts:
   - name: "api_created_host1"
     ip: "10.32.22.10"
@@ -21,19 +23,25 @@ fw_hosts:
   - name: "api_created_host3"
     ip: "10.32.22.12"
 
+# One group that contains the name of all the fw_hosts above
 host_group:
   name: "api_created_group"
+  # The map attribute is to select only the name and not ip from the fw_hosts list.
   hosts: "{{ fw_hosts | map(attribute='name') | list }}"
 
+# a tcp service with port.
 tcp_service:
   name: "api_tcp_1005"
   port: "1005"
 
+# policy section in the rules.
 policy_section:
   name: "api_rules"
+  # instead of writing 'network' again we just reference the variable above.
   layer: "{{ policy_layer }}"
   position: "top"
 
+# We create the info about the firewall policy by referencing the above info
 fw_policy:
   name: "created by ansible playbook"
   layer: "{{ policy_layer }}"

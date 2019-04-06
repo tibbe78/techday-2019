@@ -2,6 +2,7 @@
 .vault-pass*
 *.retry
 ssh_keys/
+.ssh/
 id_rsa
 cpAnsible/
 c.sh

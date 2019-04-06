@@ -1,5 +1,5 @@
 # Create a random common password in your home folder.
-tr -cd '[:alnum:]' < /dev/urandom | fold -w32 | head -n1 > ~/.vault-pass.common
+openssl rand -base64 89 | head -c40 > ~/.vault-pass.common
 # check that it looks ok
 cat ~/.vault-pass.common
 # edit ansible.cfg and add:

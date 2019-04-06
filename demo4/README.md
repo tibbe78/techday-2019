@@ -5,9 +5,10 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 :exclamation: *using the same inventory file from demo 3*\
 :exclamation: *using the same simple playbook from demo 3 as a base*
 #### Create your secure vault-passwords in your home-folder or somewhere safe.
-> This Vault-Password should be secured with a PAM system such as CyberArk
+> This example uses openssl to generate a 40 characters long password.\
+> _This Vault-Password should be secured with a PAM system such as CyberArk_
 ```sh
-tr -cd '[:alnum:]' < /dev/urandom | fold -w32 | head -n1 > ~/.vault-pass.common
+openssl rand -base64 89 | head -c40 > ~/.vault-pass.common
 cat ~/.vault-pass.common
 ```
 #### edit the ansible.cfg to point to these new vault passwords

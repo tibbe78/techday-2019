@@ -17,14 +17,18 @@ fw:
   # Can be network, NAT or threat
   policy_layer: network
 
-  host:
-    name: api_created_host
-    ip: 1.2.3.4
+  hosts:
+    - name: "api_created_host1"
+      ip: "10.32.22.10"
+    - name: "api_created_host2"
+      ip: "10.32.22.11"
+    - name: "api_created_host3"
+      ip: "10.32.22.12"
 
   group:
     name: api_created_group
     hosts:
-      - {{ fw.host.name }}
+      - "{{ fw.hosts | map(attribute='name') | list }}"
 
   tcp_service:
     name: api_tcp_1005
@@ -37,9 +41,10 @@ fw:
 
   policy:
     name: created by ansible playbook
-    layer: {{ policy_layer }}
-    position_below: {{ section.name }}
+    layer: {{ fw.policy_layer }}
+    position_below: {{ fw.section.name }}
     source: any
-    destination: {{ group.name }}
-    service: {{ tcp_service.name }}
+    destination: {{ fw.group.name }}
+    service: {{ fw.tcp_service.name }}
     action: accept
+    type: log

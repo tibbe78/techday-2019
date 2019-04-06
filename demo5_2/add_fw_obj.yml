@@ -6,76 +6,77 @@
     - vault_prod.yml
     - fw_policy_changes.yml
   tasks:
-  - name: login to checkpoint MGT via the CheckPoint Module
+  - name: "login to checkpoint MGT via the CheckPoint Module"
     check_point_mgmt:
       command: login
       parameters:
         username: "{{ mgmt_user }}"
         password: "{{ mgmt_password }}"
         management: "{{ mgmt_server }}"
-      fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
+      fingerprint: "56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12"
     register: login_response
 
-  - name: add host '{{ fw.host.name }}' with IP {{ fw.host.ip }}
+  - name: "loop hosts and add new host '{{ item.name }}'"
     check_point_mgmt:
       command: add-host
       parameters:
-        name: {{ fw.host.name }}
-        ip-address: {{ fw.host.ip }}
-      session-data: {{ login_response }}
-    when: {{ fw.add_new_host }}
+        name: "{{ item.name }}"
+        ip-address: "{{ item.ip | ipaddr }}"
+      session-data: "{{ login_response }}"
+    loop: "{{ fw.hosts }}"
+    when: "{{ fw.add_new_host }}"
 
-  - name: add group '{{ group.name }}'
+  - name: "add new group '{{ fw.group.name }}' with hosts"
     check_point_mgmt:
       command: add-group
       parameters:
-        name: "{{ group.name }}"
-        members: {{ group.hosts }}
+        name: "{{ fw.group.name }}"
+        members: {{ fw.group.hosts }}
       session-data: "{{ login_response }}"
-    when: {{ add_new_group }}
+    when: "{{ add_new_group }}"
 
-  - name: create new tcp service 'tcp_1005_script'
+  - name: "create new tcp service '{{ fw.tcp_service.name }}'"
     check_point_mgmt:
       command: add-service-tcp
       parameters:
-        name: tcp_1005_script
-        port: '1005'
-      session-data: '{{ login_response }}'
+        name: "{{ fw.tcp_service.name }}"
+        port: "{{ fw.tcp_service.port }}"
+      session-data: "{{ login_response }}"
 
-  - name: create a section called 'script_rules'
+  - name: "create a section called {{ fw.section.name }}"
     check_point_mgmt:
       command: add-access-section
       parameters:
-        layer: Network
-        name: api_rules
-        position: top
-      session-data: '{{ login_response }}'
+        layer: "{{ fw.section.layer }}"
+        name: "{{ fw.section.name }}"
+        position: "{{ fw.section.position }}"
+      session-data: "{{ login_response }}"
 
-  - name: create rule at the top of a section called 'created by ansible playbook'
+  - name: "create rule at the top of a section called '{{ fw.policy.name }}'"
     check_point_mgmt:
       command: add-access-rule
       parameters:
-        layer: network
-        name: created by ansible playbook
+        layer: "{{ fw.policy.layer }}"
+        name: "{{ fw.policy.name }}"
         position:
-          below: script_rules
+          below: "{{ fw.policy.position_below }}"
         source:
-          - any
+          - "{{ fw.policy.source }}"
         destination:
-          - api_created_host
+          - "{{ fw.policy.destination }}"
         service:
-          - tcp_1005_script
-        action: accept
+          - "{{ fw.policy.service }}"
+        action: "{{ fw.policy.action }}"
         track:
-          type: log
-      session-data: '{{ login_response }}'
+          type: "{{ fw.policy.type }}"
+      session-data: "{{ login_response }}"
 
-  - name: publish
+  - name: "publish"
     check_point_mgmt:
       command: publish
       session-data: "{{ login_response }}"
 
-  - name: logout
+  - name: "logout"
     check_point_mgmt:
       command: logout
-      session-data: '{{ login_response }}'
+      session-data: "{{ login_response }}"

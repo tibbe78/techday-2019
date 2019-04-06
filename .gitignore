@@ -8,3 +8,7 @@ cpAnsible/
 c.sh
 commands.sh
 geerlingguy*/
+roles/*
+*.swp
+.vault-password-file
+.facts

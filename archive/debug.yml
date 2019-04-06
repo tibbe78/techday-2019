@@ -2,7 +2,8 @@
 - hosts: localhost
   gather_facts: no
   vars:
-    hosts:
+    # new name not to crash with hosts?
+    fw_hosts:
       - name: "api_created_host1"
         ip: "10.32.22.10"
       - name: "api_created_host2"
@@ -10,12 +11,37 @@
       - name: "api_created_host3"
         ip: "10.32.22.12"
 
-    group:
+    # Check if group is already defined?
+    host_group:
       name: "api_created_group"
       hosts:
-        - "{{ hosts }}"
+        - "{{ fw_hosts | map(attribute='name') | list }}"
+
+    tcp_service:
+      name: "api_tcp_1005"
+      port: "1005"
+
+    policy_section:
+      name: "api_rules"
+      layer: "network"
+      position: "top"
+
+    fw_policy:
+      name: "created by ansible playbook"
+      layer: "network"
+      position_below: "{{ policy_section.name }}"
+      source: "any"
+      destination: "{{ host_group.name }}"
+      service: "{{ tcp_service.name }}"
+      action: "accept"
+      type: "log"
+
+    new_group:
+      name: "api_created_group"
+      hosts:
+        - "{{ host_group.hosts }}"
 
   tasks:
   - name: "Print host name"
     debug:
-      msg: "{{ hosts | map(attribute='name') | list }}"
+      msg: "{{ fw_hosts | map(attribute='name') | list }}"

@@ -1,15 +1,20 @@
 #!/bin/sh
 
 # install Ansible
-cd ~/git/td19/demo1
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt update
 sudo apt install ansible
 ansible --version
 
 # Genereate keys for the Ansible host if they don't exist
-if [ ! -f .ssh/id_rsa ]; then
-    /usr/bin/ssh-keygen -q -t rsa -N '' -f .ssh/id_rsa
+# and that they are secure with the passphrase and ssh-agent
+# but these should be secured with some smart way.
+if [ ! -f ~/.ssh/id_rsa ]; then
+  passphrase="$(openssl rand -base64 20 | md5sum | sed 's/ .*//')"
+  /usr/bin/ssh-keygen -q -t rsa -N "${passphrase}" -f ~/.ssh/id_rsa
+  echo "paste this into agent: ${passphrase}"
+  ssh-add -q ~/.ssh/id_rsa
+  passphrase="empty again..."
 fi
 
 # copy the public key to server1

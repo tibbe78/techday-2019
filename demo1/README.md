@@ -15,16 +15,22 @@ sudo apt update
 sudo apt install ansible
 ```
 #### Check that Ansible was installed with the latest version.
-> As of writing it's 2.7.9
+> As of writing it's 2.7.10
 ```sh
 ansible --version
 ```
 #### Generate ssh-keys on Ansible master (already exists in demo)
-> not needed if this already have been done in install\
-> this bash script checks if the key already exist.
+> _Not needed if this already have been done in install_\
+> This bash script checks if the key already exist.\
+> It installes a new secure key with a passphrase\
+> _This should be done in a secure way. Get help from experts._
 ```sh
-if [ ! -f .ssh/id_rsa ]; then
-    /usr/bin/ssh-keygen -q -t rsa -N '' -f .ssh/id_rsa
+if [ ! -f ~/.ssh/id_rsa ]; then
+  passphrase="$(openssl rand -base64 20 | md5sum | sed 's/ .*//')"
+  /usr/bin/ssh-keygen -q -t rsa -N "${passphrase}" -f ~/.ssh/id_rsa
+  echo "paste this into agent: ${passphrase}"
+  ssh-add -q ~/.ssh/id_rsa
+  passphrase="empty again..."
 fi
 ```
 #### Install public SSH key on all servers (already exists in demo)

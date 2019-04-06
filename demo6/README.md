@@ -5,9 +5,10 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 #### Ansible Roles simplify playbooks by splitting up them in smaller parts and making them more modular
 > [Ansible Galaxy](https://galaxy.ansible.com) is the public repository for roles
 #### Lets get one public role from Ansible Galaxy and also create one of our own.
-> geerlingguy.firewall is a public role that installs the iptables firewall on the server.
+> geerlingguy.firewall is a public role that installs the iptables firewall on the server.\
+> install it localy for now.
 ```sh
-ansible-galaxy -p ./ install geerlingguy.firewall
+ansible-galaxy -p ./roles install geerlingguy.firewall
 ```
 > "ansible-galaxy init" creates a starting folder structure for a role.\
 > I'm creating a role called websiteX and that it's my own with the --offline argument.

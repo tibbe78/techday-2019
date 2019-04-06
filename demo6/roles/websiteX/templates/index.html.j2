@@ -4,6 +4,8 @@
     <title>{{ website_name | default("Unknown Site") }}</title>
   </head>
   <body>
-    <p>It worked.. <strong>{{ website_name }}</strong> on server {{ ansible_facts['nodename'] }} Ansible roles <strong>Works</strong> and is fun</p>
+    <h1>
+    <p>It worked.. <strong>{{ website_name }}</strong> on server <strong>{{ ansible_facts['nodename'] }}</strong>. Ansible roles works and is fun</p>
+  </h1>
   </body>
 </html>

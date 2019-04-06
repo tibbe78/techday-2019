@@ -1,50 +1,45 @@
 ---
-  # YAML File to describe the firewall policy changes to be done.
-  # Just alot of variables to use in the add_fw_obj.yml
+# YAML File to describe the firewall policy changes to be done.
+# Just alot of variables to use in the add_fw_obj.yml
+# Firewall object to keep clean from other ansible varibles.
 
+# Boolean to select what to do
+add_new_host: true
+add_new_group: true
+add_new_tcp_service: true
+add_new_section: true
+add_new_policy: true
 
+# Can be network, NAT or threat
+policy_layer: "network"
 
+fw_hosts:
+  - name: "api_created_host1"
+    ip: "10.32.22.10"
+  - name: "api_created_host2"
+    ip: "10.32.22.11"
+  - name: "api_created_host3"
+    ip: "10.32.22.12"
 
-#Firewall object to keep clean from other ansible varibles.
-fw:
-  # Boolean to select what to do
-  add_new_host: yes
-  add_new_group: yes
-  add_new_tcp_service: yes
-  add_new_section: yes
-  add_new_policy: yes
+host_group:
+  name: "api_created_group"
+  hosts: "{{ fw_hosts | map(attribute='name') | list }}"
 
-  # Can be network, NAT or threat
-  policy_layer: network
+tcp_service:
+  name: "api_tcp_1005"
+  port: "1005"
 
-  hosts:
-    - name: "api_created_host1"
-      ip: "10.32.22.10"
-    - name: "api_created_host2"
-      ip: "10.32.22.11"
-    - name: "api_created_host3"
-      ip: "10.32.22.12"
+policy_section:
+  name: "api_rules"
+  layer: "{{ policy_layer }}"
+  position: "top"
 
-  group:
-    name: api_created_group
-    hosts:
-      - "{{ fw.hosts | map(attribute='name') | list }}"
-
-  tcp_service:
-    name: api_tcp_1005
-    port: 1005
-
-  section:
-    name: api_rules
-    layer: {{ fw.policy_layer }}
-    position: top
-
-  policy:
-    name: created by ansible playbook
-    layer: {{ fw.policy_layer }}
-    position_below: {{ fw.section.name }}
-    source: any
-    destination: {{ fw.group.name }}
-    service: {{ fw.tcp_service.name }}
-    action: accept
-    type: log
+fw_policy:
+  name: "created by ansible playbook"
+  layer: "{{ policy_layer }}"
+  position_below: "{{ policy_section.name }}"
+  source: "any"
+  destination: "{{ host_group.name }}"
+  service: "{{ tcp_service.name }}"
+  action: "accept"
+  type: "log"

@@ -4,53 +4,55 @@
   gather_facts: false
   vars_files:
     - vault_prod.yml
+    - fw_policy_changes.yml
   tasks:
-  - name: login to checkpoint MGT via the CheckPoint Module
+  - name: "login to checkpoint MGT via the CheckPoint Module"
     check_point_mgmt:
       command: login
       parameters:
         username: "{{ mgmt_user }}"
         password: "{{ mgmt_password }}"
         management: "{{ mgmt_server }}"
-      fingerprint: 56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12
+      fingerprint: "56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12"
     register: login_response
 
-  - name: Delete the rule 'created by ansible playbook'
+  - name: "Delete the rule: '{{ fw_policy.name }}'"
     check_point_mgmt:
       command: delete-access-rule
       parameters:
-        layer: network
-        name: created by ansible playbook
-      session-data: '{{ login_response }}'
+        layer: "{{ fw_policy.layer }}"
+        name: "{{ fw_policy.name }}"
+      session-data: "{{ login_response }}"
 
-  - name: delete a section called 'script_rules'
+  - name: "delete a section called: '{{ policy_section.name }}'"
     check_point_mgmt:
       command: delete-access-section
       parameters:
-        layer: Network
-        name: script_rules
-      session-data: '{{ login_response }}'
-
-  - name: remove group 'api_created_group'
-    check_point_mgmt:
-      command: delete-group
-      parameters:
-        name: api_created_group
+        layer: "{{ policy_section.layer }}"
+        name: "{{ policy_section.name }}"
       session-data: "{{ login_response }}"
 
-  - name: remove host 'api_created_host'
-    check_point_mgmt:
-      command: delete-host
-      parameters:
-        name: api_created_host
-      session-data: "{{ login_response }}"
-
-  - name: remove service 'tcp_1005_script'
+  - name: "remove service: '{{ tcp_service.name }}'"
     check_point_mgmt:
       command: delete-service-tcp
       parameters:
-        name: tcp_1005_script
+        name: "{{ tcp_service.name }}"
       session-data: "{{ login_response }}"
+
+  - name: "remove group: '{{ host_group.name }}'"
+    check_point_mgmt:
+      command: delete-group
+      parameters:
+        name: "{{ host_group.name }}"
+      session-data: "{{ login_response }}"
+
+  - name: "loop hosts and remove host"
+    check_point_mgmt:
+      command: delete-host
+      parameters:
+        name: "{{ item.name }}"
+      session-data: "{{ login_response }}"
+    loop: "{{ fw_hosts }}"
 
   - name: publish
     check_point_mgmt:

@@ -44,8 +44,9 @@ sudo apt install python-netaddr
 ```
 #### in the playbook we can loop a task with the list of hosts in the varible fw_hosts
 > In this example this task will run three times because the fw_hosts contains list of three hosts.\
-> *when:* will check agains the boolean varible in the top of fw_policy_changes if this task should run.\
-> *"{{ item.ip | ipaddr }}"* will actually use the python-netaddr function ipaddr to check that it's a correct ip before installing.
+> **_when:_** will check agains the boolean varible in the top of fw_policy_changes if this task should run.\
+> **_"{{ item.ip | ipaddr }}"_** will actually use the python-netaddr function ipaddr to check that it's a correct ip before installing.\
+> **_item_** is the new variable created by the loop: command and then contains each item in the list fw_hosts
 ```yml
 - name: "loop fw_hosts and add new host "
   check_point_mgmt:

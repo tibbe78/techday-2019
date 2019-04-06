@@ -16,6 +16,14 @@
       fingerprint: "56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12"
     register: login_response
 
+  - name: Debug the fw_hosts and only run on debug tag.
+    debug:
+      msg: "These are the hosts we will add: {{ fw_hosts }}"
+    tags:
+      - debug
+      - never
+    when: add_new_host
+
   - name: "loop fw_hosts and add new host "
     check_point_mgmt:
       command: add-host

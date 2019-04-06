@@ -42,7 +42,22 @@ sudo apt install python-netaddr
     - vault_prod.yml
     - fw_policy_changes.yml
 ```
-#### to add the policys to the firewall just run the playbook.
+#### in the playbook we can loop a task with the list of hosts in the varible fw_hosts
+> In this example this task will run three times because the fw_hosts contains list of three hosts.\
+> 'when:' will check agains the boolean varible in the top of fw_policy_changes if this task should run.\
+> "{{ item.ip | ipaddr }}" will actually use the python-netaddr function ipaddr to check that it's a correct ip before installing.
+```yml
+- name: "loop fw_hosts and add new host "
+  check_point_mgmt:
+    command: add-host
+    parameters:
+      name: "{{ item.name }}"
+      ip-address: "{{ item.ip | ipaddr }}"
+    session-data: "{{ login_response }}"
+  loop: "{{ fw_hosts }}"
+  when: add_new_host
+```
+#### to add the policys to the firewall just run the playbook add_fw_obj.yml
 > First check that the checkpoint api container is running first.
 ```sh
 docker ps

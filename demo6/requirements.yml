@@ -1,0 +1,7 @@
+---
+
+# Install iptables firewall from Ansible Galaxy
+- src: geerlingguy.firewall
+
+# install my own test role for websiteX
+- src: https://github.com/tibbe78/websiteX

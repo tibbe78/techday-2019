@@ -1,8 +1,0 @@
----
-  # install file for websiteX
-- name: Install Apache2 on Ubuntu
-  apt:
-    name: apache2
-    state: latest
-    update_cache: yes
-  when: ansible_facts['os_family'] == "Debian"

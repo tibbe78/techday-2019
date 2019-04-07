@@ -1,7 +1,10 @@
 ---
 
-# Install iptables firewall from Ansible Galaxy
+# Install latest iptables firewall role by geerlingguy from Ansible Galaxy
+# rename the role to firewall
 - src: geerlingguy.firewall
+  name: firewall
 
 # install my own test role for websiteX from GitHub
 - src: https://github.com/tibbe78/websiteX
+  version: v1.0

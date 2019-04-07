@@ -1,0 +1,30 @@
+---
+- hosts: dockerhost
+  become: false
+  gather_facts: false
+
+  tasks:
+  - name: Create a management network
+    docker_network:
+      name: mgt_net
+
+  - name: Build CheckPoint API image
+    docker_image:
+      path: docker
+      name: cp_api_img
+
+  - name: Create the docker_container
+    docker_container:
+      name: cp_api02
+      image: cp_api_img
+      networks:
+        - name: mgt_net
+          aliases:
+          - mgt
+
+- hosts: docker_containers
+  become: no
+  gather_facts: no
+  tasks:
+    - name: ping the new docker containers
+      ping:

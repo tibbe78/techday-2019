@@ -1,0 +1,10 @@
+---
+# tasks file for websiteX
+- name: Include and Run install tasks
+  import_tasks: install.yml
+
+- name: Include and Run configure tasks
+  import_tasks: configure.yml
+
+- name: Include and Run service tasks
+  import_tasks: service.yml

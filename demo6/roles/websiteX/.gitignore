@@ -1,0 +1,14 @@
+.vaultpass*
+.vault-pass*
+*.retry
+ssh_keys/
+.ssh/
+id_rsa
+cpAnsible/
+c.sh
+commands.sh
+geerlingguy*/
+roles/*
+*.swp
+.vault-password-file
+.facts

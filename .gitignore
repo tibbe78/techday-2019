@@ -12,3 +12,4 @@ roles/*
 *.swp
 .vault-password-file
 .facts
+websiteX/

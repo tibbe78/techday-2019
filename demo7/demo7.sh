@@ -1,22 +1,23 @@
 #!/bin/sh
 
-# stop and remove container if running
-docker container stop cp_api01 cp_api02
-docker container rm cp_api01 cp_api02
-
-# Build the image from the Dockerfile
-docker build --tag=cp_api_img ./docker/
+# Pull the image from the public dockerhub
+docker pull rundeck/rundeck:3.0.19
 
 # Create the Management network in docker.
 docker network list | grep -q "mgt_net" || docker network create "mgt_net"
 
+# Create SSH keys to use with docker container
+if [ ! -f ./ssh_keys/id_rsa ]
+then /usr/bin/ssh-keygen -q -t rsa -N "" -f ./ssh_keys/id_rsa
+fi
+
 # Create the docker container from the image.
 # Also send in the local ssh_keys as the container .ssh folder
-docker run -d -P \
-  --network='mgt_net' \
-  --network-alias mgt \
-  --name cp_api1 cp_api_img
-sleep 1
+docker run --name rundeck -d -p 4440:4440 \
+ --network='mgt_net' --network-alias mgt \
+ --mount type=bind,source="$(pwd)"/ssh_keys,target=/home/rundeck/.ssh \
+ --mount type=bind,source="$(pwd)"/container_data,target=/home/rundeck/server/data \
+ rundeck/rundeck:3.0.19
 
 # Or create all via Ansible
 ansible-playbook -i inventory.ini create_docker.yml

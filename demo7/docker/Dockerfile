@@ -1,10 +1,9 @@
-# CheckPoint MGT API SDK
-#
+# Docker with the Ansible plugin
 # VERSION               0.0.3
 
-# Download base image from python repository version 3.7-alpine
-# Alpine is extra small image
-FROM python:3.7-alpine
+# Download base image from docker hub rundeck/rundeck:3.0.19
+# using version 3.0.19
+FROM rundeck/rundeck:3.0.19
 MAINTAINER Christofer Tibbelin <christofer.tibbelin@cygate.se>
 
 # update + install git

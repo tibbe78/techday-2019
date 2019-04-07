@@ -64,9 +64,9 @@ sudo apt install python-netaddr
 docker ps
 ansible-playbook -i inventory.ini add_fw_obj.yml
 ```
-> Playbooks can be run in check mode with -C. Then no changes will be done.
+> Playbooks can be run in check mode with --check. Then no changes will be done.
 ```sh
-ansible-playbook -C -i inventory.ini add_fw_obj.yml
+ansible-playbook --check -i inventory.ini add_fw_obj.yml
 ```
 ### [Demo 6](../demo6/) :blue_book::green_book::orange_book:
 Show how roles can simplify playbook complexity

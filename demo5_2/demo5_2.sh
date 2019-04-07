@@ -10,7 +10,7 @@ cp -r ./cpAnsible/check_point_mgmt /usr/share/my_modules
 docker ps
 
 # Run the playbook to check if it would have worked to add objects to firewall
-ansible-playbook -C -i inventory.ini add_fw_obj.yml
+ansible-playbook --check -i inventory.ini add_fw_obj.yml
 
 # Run the playbook to add objects to firewall
 ansible-playbook -i inventory.ini add_fw_obj.yml

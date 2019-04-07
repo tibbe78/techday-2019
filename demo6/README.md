@@ -4,69 +4,15 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### How Ansible roles can simplify playbook complexity
 #### Ansible Roles simplify playbooks by splitting up them in smaller parts and making them more modular
 > [Ansible Galaxy](https://galaxy.ansible.com) is the public repository for roles
-#### Lets get one public role from Ansible Galaxy and also create one of our own.
+#### Lets get one public role from Ansible Galaxy and also one of our own roles.
 > geerlingguy.firewall is a public role that installs the iptables firewall on the server.\
-> install it localy for now.
+> we will install it localy for now using the requirements.yml file.\
+> requirements.yml will download the firewall role but also our own websiteX role from GitHub.
 ```sh
-ansible-galaxy -p ./roles install geerlingguy.firewall
+ansible-galaxy -p ./roles install -r requirements.yml
 ```
-> "ansible-galaxy init" creates a starting folder structure for a role.\
-> I'm creating a role called websiteX and that it's my own with the --offline argument.
-```sh
-ansible-galaxy init websiteX --offline
-```
-> You can remove the stuff you don't need from this folder structure
-```sh
-websiteX
-├── defaults #Default variables
-│   └── main.yml #main.yml is the startfile in each folder
-├── files #Files you need in your role that you don`t change.
-├── handlers #Tasks that will only be run once. ex service restart
-│   └── main.yml #Ansible always start reading main.yml in each folder
-├── meta #Metadata about this role
-│   └── main.yml #Ansible always start reading main.yml in each folder
-├── README.md #Description of the role
-├── tasks #All tasks you have for this role.
-│   └── main.yml #Ansible always start reading main.yml in each folder
-├── templates #Templates using jinja2 template language. Like files but can be modified
-├── tests #If you have automatic testing in your role
-└── vars #Variables that will override the defaults.
-    └── main.yml #Ansible always start reading main.yml in each folder
-```
-#### My role websiteX should install and configure a server to be my public website for our DMZ
-> Default location for roles is either /etc/ansible/roles or ~/.ansible/roles\
-> But i have put the roles I use in the roles folder localy in demo6
-#### Created a simple webpage and put it under templates as index.html.j2
-> we use jinja2 to insert website name and servername from varibles.
-```html
-<!doctype html>
-<html>
-  <head>
-    <title>{{ website_name | default("Unknown Site") }}</title>
-  </head>
-  <body>
-    <p>It worked.. <strong>{{ website_name }}</strong> on server {{ ansible_facts['nodename'] }} Anssible roles <strong>Works</strong> and is fun</p>
-  </body>
-</html>
-```
-#### we also split up our tasks in four files to make it easier to read.
-> main.yml i always called, it calls the other ones in order.
-```sh
-websiteX/tasks/
-├── main.yml #always runs at start
-├── install.yml #install apache2
-├── configure.yml #configure apache2
-└── service.yml #start apache2
-```
-#### we create a new handler in main.yml in folder handlers
-> handlers will only run once, good for restarting services after changes.\
-> It's the name of the handler that will be used for identifier.
-```sh
-- name: restart_apache_service
-  service:
-    name: apache2
-    state: restarted
-```
+#### Now we should have two roles in our roles catalog in det local folder.
+> for more info on how we created the websiteX role have a look at it's [GitHub page.](https://github.com/tibbe78/websiteX)\
 #### You can test your playbooks and roles with the syntax-check option
 ```sh
 ansible-playbook -i inventory.ini site.yml --syntax-check

@@ -6,5 +6,6 @@
   name: firewall
 
 # install my own test role for websiteX from GitHub
+# only want version v1.0 so I don't get a new version and something breaks.
 - src: https://github.com/tibbe78/websiteX
   version: v1.0

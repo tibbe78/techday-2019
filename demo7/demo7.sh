@@ -1,29 +1,19 @@
 #!/bin/sh
 
-# Pull the image from the public dockerhub
-docker pull rundeck/rundeck:3.0.19
+# Rundeck works like ansible using SSH and also using ansible localy
+# So it have to be installed on the same machine as ansible.
+# There is a ansible plugin for rundeck that makes it easy to work with ansible.
 
-# Create the Management network in docker.
-docker network list | grep -q "mgt_net" || docker network create "mgt_net"
+mkdir downloads
 
-# Create SSH keys to use with docker container
-if [ ! -f ./ssh_keys/id_rsa ]
-then /usr/bin/ssh-keygen -q -t rsa -N "" -f ./ssh_keys/id_rsa
-fi
+# Get the latest Ansible plugin for rundeck
+wget -P ./downloads https://github.com/Batix/rundeck-ansible-plugin/releases/download/3.0.1/ansible-plugin-3.0.1.jar
+# Get the latest rundeck version
+wget -P ./downloads https://dl.bintray.com/rundeck/rundeck-deb/rundeck_3.0.20.20190408-1.201904081511_all.deb
 
-# Create the docker container from the image.
-# Also send in the local ssh_keys as the container .ssh folder
-docker run --name rundeck -d -p 4440:4440 \
- --network='mgt_net' --network-alias mgt \
- --mount type=bind,source="$(pwd)"/ssh_keys,target=/home/rundeck/.ssh \
- --mount type=bind,source="$(pwd)"/container_data,target=/home/rundeck/server/data \
- rundeck/rundeck:3.0.19
 
-# Or create all via Ansible
-ansible-playbook -i inventory.ini create_docker.yml
+# Install Java
+sudo apt install default-jre
 
-# Check the container is running again
-docker ps -s --format "table {{.Names}}: {{.Size}}: {{.RunningFor}}"
-
-# Check memory usage
-docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
+# Check java version
+java -version

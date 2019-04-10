@@ -11,9 +11,24 @@ wget -P ./downloads https://github.com/Batix/rundeck-ansible-plugin/releases/dow
 # Get the latest rundeck version
 wget -P ./downloads https://dl.bintray.com/rundeck/rundeck-deb/rundeck_3.0.20.20190408-1.201904081511_all.deb
 
-
-# Install Java
-sudo apt install default-jre
+# Install Java (Must be Java 8 not 11)
+sudo apt install openjdk-8-jre-headless
 
 # Check java version
 java -version
+
+echo "deb https://rundeck.bintray.com/rundeck-deb /" | sudo tee -a /etc/apt/sources.list.d/rundeck.list
+curl 'https://bintray.com/user/downloadSubjectPublicKey?username=bintray' | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install rundeck
+
+# Install rundeck
+sudo dpkg -i ./downloads/rundeck*.deb
+
+sudo systemctl start rundeckd
+
+cp ./downloads/ansible-plugin-3.0.1.jar /var/lib/rundeck/libext
+
+sudo chown rundeck:rundeck /var/lib/rundeck/libext/ansible-plugin-3.0.1.jar
+
+sudo systemctl restart rundeckd

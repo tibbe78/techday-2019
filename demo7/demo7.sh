@@ -22,13 +22,13 @@ curl 'https://bintray.com/user/downloadSubjectPublicKey?username=bintray' | sudo
 sudo apt-get update
 sudo apt-get install rundeck
 
-# Install rundeck
-sudo dpkg -i ./downloads/rundeck*.deb
 
 sudo systemctl start rundeckd
 
 cp ./downloads/ansible-plugin-3.0.1.jar /var/lib/rundeck/libext
 
 sudo chown rundeck:rundeck /var/lib/rundeck/libext/ansible-plugin-3.0.1.jar
+
+sudo rm /var/lib/rundeck/libext/rundeck-ansible*
 
 sudo systemctl restart rundeckd

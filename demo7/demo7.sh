@@ -43,3 +43,6 @@ sudo su rundeck -s /bin/bash -c "ansible all -m ping"
 
 sudo systemctl enable rundeckd
 sudo systemctl restart rundeckd
+
+go to: http://localhost:4440
+login with admin:admin

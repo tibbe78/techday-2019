@@ -1,0 +1,27 @@
+---
+description: User, all access to projects.
+context:
+  project: 'demo7' # applies to projects matching a regex.
+for:
+  resource:
+    - equals:
+        kind: job
+      allow: '*'
+  job:
+    - allow: '*'
+by:
+  group: user
+
+---
+description: User, all access.
+context:
+  application: 'rundeck'
+for:
+  resource:
+    - allow: '*' # allow create of projects
+  project:
+    - match:
+        name: '.*'
+      allow: [read] # allow full access of all projects or use 'admin'
+by:
+  group: user

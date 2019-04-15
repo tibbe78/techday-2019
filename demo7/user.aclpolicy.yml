@@ -1,27 +1,35 @@
 ---
-description: User, all access to projects.
+description: User, access only to demo7 project.
 context:
   project: 'demo7' # applies to projects matching a regex.
 for:
   resource:
     - equals:
-        kind: job
-      allow: '*'
+        kind: node
+      allow: [read,update,refresh] # allow refresh node sources
+    - equals:
+        kind: event
+      allow: [read] # allow read/create events
   job:
-    - allow: '*'
+    - equals:
+        group: public
+      allow: [read, run]
+    - equals:
+        group: private
+      deny: '*'
+  node:
+    - allow: [read, update, run] # allow read/run for nodes
 by:
   group: user
 
 ---
-description: User, all access.
+description: User, access only to demo7 project
 context:
   application: 'rundeck'
 for:
-  resource:
-    - allow: '*' # allow create of projects
   project:
     - match:
-        name: '.*'
-      allow: [read] # allow full access of all projects or use 'admin'
+        name: 'demo7'
+      allow: [read] # allow read access of demo7 project
 by:
   group: user

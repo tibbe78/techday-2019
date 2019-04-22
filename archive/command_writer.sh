@@ -4,7 +4,8 @@
 # Made by Christofer Tibbelin + Google + Internet
 
 # Supports multiline commdns by adding ' _' at the end of row. it will then add a '; ' instead
-
+# Disable local echo
+stty -echo
 # Colors for fake command prompt
 # Green
 grn=$'\e[1;32m'
@@ -68,3 +69,5 @@ done
 printf $'\n'
 command+=$'\n'
 eval $command
+# Enable local echo again
+stty echo

@@ -5,6 +5,7 @@
   vars_files:
     - vault_prod.yml
     - fw_policy_changes.yml
+
   tasks:
   - name: "login to checkpoint MGT via the CheckPoint Module"
     check_point_mgmt:
@@ -16,6 +17,7 @@
       fingerprint: "56:2B:FF:3C:A1:B2:38:29:E6:C6:47:FE:AA:08:D9:D9:54:66:62:12"
     register: login_response
 
+
   - name: Debug the fw_hosts and only run on debug tag.
     debug:
       msg: "These are the hosts we will add: {{ fw_hosts }}"
@@ -23,6 +25,7 @@
       - debug
       - never
     when: add_new_host
+
 
   - name: "loop fw_hosts and add new host "
     check_point_mgmt:
@@ -34,6 +37,7 @@
     loop: "{{ fw_hosts }}"
     when: add_new_host
 
+
   - name: "add new group '{{ host_group.name }}' with hosts"
     check_point_mgmt:
       command: add-group
@@ -42,6 +46,7 @@
         members: "{{ host_group.hosts}}"
       session-data: "{{ login_response }}"
     when: add_new_group
+
 
   - name: "create new tcp service '{{ tcp_service.name }}'"
     check_point_mgmt:
@@ -52,6 +57,7 @@
       session-data: "{{ login_response }}"
     when: add_new_tcp_service
 
+
   - name: "create a section called {{ policy_section.name }}"
     check_point_mgmt:
       command: add-access-section
@@ -61,6 +67,7 @@
         position: "{{ policy_section.position }}"
       session-data: "{{ login_response }}"
     when: add_new_section
+
 
   - name: "create rule at the top of a section called '{{ fw_policy.name }}'"
     check_point_mgmt:
@@ -82,10 +89,12 @@
       session-data: "{{ login_response }}"
     when: add_new_policy
 
+
   - name: "publish"
     check_point_mgmt:
       command: publish
       session-data: "{{ login_response }}"
+
 
   - name: "logout"
     check_point_mgmt:

@@ -24,7 +24,10 @@
 
 - hosts: docker_containers
   become: no
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: ping the new docker containers
       ping:
+    - debug:
+        msg: "Docker Container {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+      when: ansible_default_ipv4.gateway is defined

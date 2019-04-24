@@ -21,7 +21,7 @@
         - name: mgt_net
           aliases:
           - mgt
-          
+
 - hosts: docker_containers
   become: no
   gather_facts: no

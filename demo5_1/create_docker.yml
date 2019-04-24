@@ -4,16 +4,16 @@
   gather_facts: false
 
   tasks:
-  - name: Create a management network
+  - name: Create a management network in Docker
     docker_network:
       name: mgt_net
 
-  - name: Build CheckPoint API image
+  - name: Build CheckPoint API image for Docker
     docker_image:
       path: docker
       name: cp_api_img
 
-  - name: Create the docker_container
+  - name: Create the Docker Container from the image
     docker_container:
       name: cp_api02
       image: cp_api_img

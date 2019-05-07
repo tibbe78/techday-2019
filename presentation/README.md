@@ -4,6 +4,6 @@ Ansible automation demo for Cygate Techdays 2019 by Christofer Tibbelin
 ### [Demo network map](demo_map.png):maple_leaf:
 Showing the demo network setup I have. To understand more what I work with in the demo.
 ### [Fast fake keyboard writer](intro.sh):grin:
-Example YAML file showing a playbook
+Writes the correct text when pressing any key, similar to command writer in the archive folder.
 ### [Example YAML file](Example_YAML.yml):page_with_curl:
 Example YAML file showing a playbook
